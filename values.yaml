@@ -1,0 +1,112 @@
+# Default values for activepieces.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+# override default encryption key
+encryptionKey: 
+
+#override default jwt secret
+jwtSecret: 
+
+image:
+  repository: activepieces/activepieces
+  pullPolicy: IfNotPresent
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+extraEnvVars:
+  - name: AP_SIGN_UP_ENABLED
+    value: 'true'
+  - name: AP_FRONTEND_URL
+    value: https://activepieces.ronas.cloud
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext:
+  privileged: true
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: ""
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/rewrite-target: /
+    cert-manager.io/cluster-issuer: cert-manager
+    certmanager.k8s.io/cluster-issuer: cert-manager
+  hosts:
+    - host: activepieces.ronas.cloud
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: 
+    - secretName: activepieces.ronas.cloud-tls
+      hosts:
+        - activepieces.ronas.cloud
+
+resources:
+  limits:
+    cpu: 260m
+    memory: 256Mi
+  requests:
+    cpu: 200m
+    memory: 192Mi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+postgresql:
+  auth:
+    database: activepieces
+  primary:
+    persistence:
+      size: 1Gi
+    resources:
+      requests:
+        cpu: 150m
+        memory: 128Mi
+      limits:
+        cpu: 200m
+        memory: 192Mi
+
+redis:
+  architecture: standalone
+  master:
+    persistence:
+      size: 1Gi
+    resources:
+      requests:
+        cpu: 60m
+        memory: 128Mi
+      limits:
+        cpu: 80m
+        memory: 192Mi
