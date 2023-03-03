@@ -2,6 +2,24 @@ apiVersion: v1
 entries:
   activepieces:
   - apiVersion: v2
+    appVersion: 0.3.4
+    created: "2023-03-03T13:51:11.483145787Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~12.2.2
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ~17.8.2
+    description: This Helm chart deploys the https://www.activepieces.com application
+      to Kubernetes.
+    digest: e41595c9d0c03c57b32e230c96482f53545b34394790bc8b489a3f70c818bd1c
+    name: activepieces
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/activepieces-0.3.0/activepieces-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
     appVersion: 0.3.5-beta
     created: "2023-03-03T13:04:10.090569841Z"
     dependencies:
@@ -37,4 +55,4 @@ entries:
     urls:
     - https://github.com/RonasIT/activepieces-helm/releases/download/activepieces-0.1.0/activepieces-0.1.0.tgz
     version: 0.1.0
-generated: "2023-03-03T13:04:10.090581441Z"
+generated: "2023-03-03T13:51:11.483159787Z"
