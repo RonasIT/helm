@@ -5,10 +5,10 @@
 replicaCount: 1
 
 # override default encryption key
-encryptionKey: 
+encryptionKey: ""
 
 #override default jwt secret
-jwtSecret: 
+jwtSecret: ""
 
 image:
   repository: activepieces/activepieces
@@ -29,16 +29,16 @@ serviceAccount:
 
 extraEnvVars:
   - name: AP_SIGN_UP_ENABLED
-    value: 'true'
+    value: "true"
   - name: AP_FRONTEND_URL
     value: https://activepieces.ronas.cloud
 
 podAnnotations: {}
 
 podSecurityContext: {}
-  # fsGroup: 2000
+# fsGroup: 2000
 
-securityContext:
+sgecurityContext:
   privileged: true
 
 service:
@@ -46,22 +46,20 @@ service:
   port: 80
 
 ingress:
-  enabled: true
+  enabled: false
   className: ""
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: cert-manager
-    certmanager.k8s.io/cluster-issuer: cert-manager
+  annotations: {}
+  # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: activepieces.ronas.cloud
+    - host: chart-example.local
       paths:
         - path: /
           pathType: ImplementationSpecific
-  tls: 
-    - secretName: activepieces.ronas.cloud-tls
-      hosts:
-        - activepieces.ronas.cloud
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
 
 resources:
   limits:
