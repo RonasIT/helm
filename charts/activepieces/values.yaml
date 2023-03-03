@@ -29,9 +29,9 @@ serviceAccount:
 
 extraEnvVars:
   - name: AP_SIGN_UP_ENABLED
-    value: "true"
+    value: "false"
   - name: AP_FRONTEND_URL
-    value: https://activepieces.ronas.cloud
+    value: http://localhost:8080/
 
 podAnnotations: {}
 
