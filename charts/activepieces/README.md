@@ -31,7 +31,7 @@ Replace values.yaml with the path to your configuration file.
 4. Wait for the deployment to complete. You can monitor the deployment status by running:
 
 ```sh
-kubectl get pods -l app=activepieces
+kubectl get pods -l app.kubernetes.io/name=activepieces
 ```
 
 5. Once the deployment is complete, you can access the ActivePieces web application by running:
