@@ -33,7 +33,3 @@ We welcome contributions to this repository! If you have developed a Helm chart 
 The chart must be compatible with Kubernetes.
 The chart must follow best practices for Helm chart development.
 The chart must include a README file that provides clear instructions for using the chart.
-
-## License
-
-All charts in this repository are released under the Apache License, Version 2.0. See the LICENSE file for more information.
