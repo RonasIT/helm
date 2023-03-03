@@ -38,7 +38,7 @@ podAnnotations: {}
 podSecurityContext: {}
 # fsGroup: 2000
 
-sgecurityContext:
+securityContext:
   privileged: true
 
 service:
