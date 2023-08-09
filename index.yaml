@@ -1,0 +1,83 @@
+apiVersion: v1
+entries:
+  activepieces:
+  - apiVersion: v2
+    appVersion: 0.3.4
+    created: "2023-08-09T13:56:26.943159355Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~12.2.2
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ~17.8.2
+    description: This Helm chart deploys the https://www.activepieces.com application
+      to Kubernetes.
+    digest: bf2450b6e070e0a1d62d8e16f8cb7ca99a5e7c0c8b3bfdbabadf84cf03517078
+    name: activepieces
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/activepieces-0.3.0/activepieces-0.3.0.tgz
+    version: 0.3.0
+  angular:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-08-09T13:56:27.115149488Z"
+    description: A Helm chart for Kubernetes
+    digest: 096fee45caa5652dcff72171088c27e0e18c3cbb82bb082ed331ad872a9963a5
+    name: angular
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/angular-1.0.5/angular-1.0.5.tgz
+    version: 1.0.5
+  laravel:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-08-09T13:56:27.338749392Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.2.2
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.5.2
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.8.3
+    - condition: soketi.enabled
+      name: soketi
+      repository: https://helm.soketi.app
+      version: 1.0.2
+    description: A Helm chart for Kubernetes
+    digest: 13ca9f457749045d12f7eee595a3340c388923932bbe7dc62a8a5dd619d3cf8d
+    name: laravel
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/laravel-1.3.5/laravel-1.3.5.tgz
+    version: 1.3.5
+  nextjs:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-08-09T13:56:27.488000931Z"
+    description: A Helm chart for Kubernetes
+    digest: f7b72dbf5416125f7e69a6b9e94a8c3fd4cfe516f147e1988f2994a31048a095
+    name: nextjs
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/nextjs-1.0.3/nextjs-1.0.3.tgz
+    version: 1.0.3
+  react:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-08-09T13:56:27.662604799Z"
+    description: A Helm chart for Kubernetes
+    digest: 7c5e8e10f4baf2ad05ac85194e78c71739bedbb0fb25f57ae78d43c7bb4a5327
+    name: react
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/react-0.1.1/react-0.1.1.tgz
+    version: 0.1.1
+generated: "2023-08-09T13:56:27.662609699Z"
