@@ -27,6 +27,7 @@ jobs:
       - name: Helm repos add
         run: |
           helm repo add bitnami https://charts.bitnami.com/bitnami
+          helm repo add soketi https://helm.soketi.app
 
       - name: Run chart-releaser
         uses: helm/chart-releaser-action@v1.5.0
