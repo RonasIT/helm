@@ -227,6 +227,7 @@ migration:
 
 workers:
   enabled: true
+# global workers resources (can be overriden in items)
   resources:
     requests:
       cpu: 35m
@@ -238,3 +239,10 @@ workers:
 #   - name: default
 #     replicaCount: 1
 #     cmd: "php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=default --memory=128"
+#     resources:
+#       requests:
+#         cpu: 45m
+#         memory: 90Mi
+#       limits:
+#         cpu: 55m
+#         memory: 110Mi
