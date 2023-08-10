@@ -1,55 +1,53 @@
-# ActivePieces Helm Chart
+# activepieces
 
-This repository contains a Helm chart to deploy the https://www.activepieces.com web application to a Kubernetes cluster.
+![Version: 0.3.0](https://img.shields.io/badge/Version-0.3.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 0.3.4](https://img.shields.io/badge/AppVersion-0.3.4-informational?style=flat-square)
 
-## Prerequisites
+This Helm chart deploys the https://www.activepieces.com application to Kubernetes.
 
-Before deploying the ActivePieces Helm chart, make sure you have:
+## Requirements
 
-- A Kubernetes cluster running version 1.16 or later
-- Helm installed on your local machine
+| Repository | Name | Version |
+|------------|------|---------|
+| https://charts.bitnami.com/bitnami | postgresql | ~12.2.2 |
+| https://charts.bitnami.com/bitnami | redis | ~17.8.2 |
 
-## Installing the Chart
+## Values
 
-To install the ActivePieces Helm chart, run this commands:
-
-```sh
-helm repo add ronasit https://ronasit.github.io/helm/
-helm install activepieces ronasit/activepieces
-```
-
-This command will deploy the ActivePieces web application to your Kubernetes cluster using the default configuration values.
-
-If you want to customize the deployment, you can pass a YAML file with your configuration values as follows:
-
-```sh
-helm install activepieces ronasit/activepieces -f values.yaml
-```
-
-Replace values.yaml with the path to your configuration file.
-
-4. Wait for the deployment to complete. You can monitor the deployment status by running:
-
-```sh
-kubectl get pods -l app.kubernetes.io/name=activepieces
-```
-
-5. Once the deployment is complete, you can access the ActivePieces web application by running:
-
-```sh
-kubectl port-forward svc/activepieces 8080:80
-```
-
-This command will forward traffic from your local machine to the ActivePieces service running in the Kubernetes cluster.
-
-Open a web browser and go to http://localhost:8080 to access the ActivePieces web application.
-
-## Uninstalling the Chart
-
-To uninstall the ActivePieces Helm chart, run the following command:
-
-```sh
-helm uninstall activepieces
-```
-
-This command will delete all resources created by the chart, including the Kubernetes deployment, service, and ingress (if created).
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| affinity | object | `{}` |  |
+| autoscaling.enabled | bool | `false` |  |
+| autoscaling.maxReplicas | int | `100` |  |
+| autoscaling.minReplicas | int | `1` |  |
+| autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
+| encryptionKey | string | `""` |  |
+| extraEnvVars[0].name | string | `"AP_SIGN_UP_ENABLED"` |  |
+| extraEnvVars[0].value | string | `"false"` |  |
+| extraEnvVars[1].name | string | `"AP_FRONTEND_URL"` |  |
+| extraEnvVars[1].value | string | `"http://localhost:8080/"` |  |
+| fullnameOverride | string | `""` |  |
+| image.pullPolicy | string | `"IfNotPresent"` |  |
+| image.repository | string | `"activepieces/activepieces"` |  |
+| imagePullSecrets | list | `[]` |  |
+| ingress.annotations | object | `{}` |  |
+| ingress.className | string | `""` |  |
+| ingress.enabled | bool | `false` |  |
+| ingress.hosts[0].host | string | `"chart-example.local"` |  |
+| ingress.hosts[0].paths[0].path | string | `"/"` |  |
+| ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
+| ingress.tls | list | `[]` |  |
+| jwtSecret | string | `""` |  |
+| nameOverride | string | `""` |  |
+| nodeSelector | object | `{}` |  |
+| podAnnotations | object | `{}` |  |
+| podSecurityContext | object | `{}` |  |
+| postgresql.auth.database | string | `"activepieces"` |  |
+| replicaCount | int | `1` |  |
+| resources | object | `{}` |  |
+| securityContext.privileged | bool | `true` |  |
+| service.port | int | `80` |  |
+| service.type | string | `"ClusterIP"` |  |
+| serviceAccount.annotations | object | `{}` |  |
+| serviceAccount.create | bool | `true` |  |
+| serviceAccount.name | string | `""` |  |
+| tolerations | list | `[]` |  |
