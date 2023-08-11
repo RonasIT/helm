@@ -4,11 +4,11 @@
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name nextjs:
 
 ```console
-$ helm repo add ronas https://ronasit.github.io/projects-operator/
-$ helm install my-release ronas/nextjs
+$ helm repo add ronas https://ronasit.github.io/helm/
+$ helm install nextjs ronas/nextjs
 ```
 
 ## Values

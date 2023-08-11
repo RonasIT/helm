@@ -4,11 +4,11 @@
 
 ## Installing the Chart
 
-To install the chart with the release name `my-release`:
+To install the chart with the release name angular:
 
 ```console
-$ helm repo add ronas https://ronasit.github.io/projects-operator/
-$ helm install my-release ronas/angular
+$ helm repo add ronas https://ronasit.github.io/helm/
+$ helm install angular ronas/angular
 ```
 
 ## Values
