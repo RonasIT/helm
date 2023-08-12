@@ -28,6 +28,12 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
+      - name: show-logs
+        securityContext:
+          {{- toYaml .Values.securityContext | nindent 10 }}
+        image: "ubuntu:latest"
+        command: <command to show logs>
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
       - name: {{ .Chart.Name }}
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}
