@@ -11,3 +11,6 @@ $ helm repo add ronas https://ronasit.github.io/helm/
 $ helm install {{ template "chart.name" . }} ronas/{{ template "chart.name" . }}
 ```
 
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
