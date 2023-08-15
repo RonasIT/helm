@@ -226,7 +226,7 @@ migration:
       memory: 100Mi
 
 workers:
-  enabled: true
+  enabled: false
 # global workers resources (can be overriden in items)
   resources:
     requests:
