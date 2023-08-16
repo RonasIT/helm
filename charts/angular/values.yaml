@@ -34,7 +34,7 @@ podSecurityContext: {}
 # fsGroup: 2000
 
 securityContext: {}
-# capabilities:
+# capabilities
 #   drop:
 #   - ALL
 # readOnlyRootFilesystem: true
@@ -53,7 +53,17 @@ ingress:
     ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: cert-manager
     certmanager.k8s.io/cluster-issuer: cert-manager
-  host: react.ronas.cloud
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+  tls:
+    - secretName: www.angular.ronas.cloud-tls
+      hosts:
+        - www.angular.ronas.cloud
+        - angular.ronas.cloud
+  hosts:
+    - host: www.angular.ronas.cloud
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
 
 resources:
   requests:
