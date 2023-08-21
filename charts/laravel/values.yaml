@@ -215,6 +215,9 @@ cronjobs:
 
 migration:
   enabled: true
+  annotations:
+    "helm.sh/hook": post-install
+    "helm.sh/hook-delete-policy": before-hook-creation
   activeDeadlineSeconds: 180
   cmd: "/mnt/scripts/migration.sh"
   resources:
