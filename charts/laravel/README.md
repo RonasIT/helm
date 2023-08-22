@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 1.3.8](https://img.shields.io/badge/Version-1.3.8-informational?style=flat-square)
+![Version: 1.4.0](https://img.shields.io/badge/Version-1.4.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -61,6 +61,15 @@ $ helm install laravel ronas/laravel
 | livenessProbe.enabled | bool | `true` |  |
 | livenessProbe.path | string | `"/status"` |  |
 | livenessProbe.port | string | `"http"` |  |
+| logger.enabled | bool | `true` |  |
+| logger.resources.limits.cpu | string | `"90m"` |  |
+| logger.resources.limits.memory | string | `"200Mi"` |  |
+| logger.resources.requests.cpu | string | `"70m"` |  |
+| logger.resources.requests.memory | string | `"160Mi"` |  |
+| logger.volumes[0].configMap.items[0].key | string | `"fluent-bit.conf"` |  |
+| logger.volumes[0].configMap.items[0].path | string | `"fluent-bit.conf"` |  |
+| logger.volumes[0].configMap.name | string | `"fluent-bit-conf-cm"` |  |
+| logger.volumes[0].name | string | `"fluent-bit-conf"` |  |
 | migration.activeDeadlineSeconds | int | `180` |  |
 | migration.cmd | string | `"/mnt/scripts/migration.sh"` |  |
 | migration.enabled | bool | `true` |  |
@@ -139,9 +148,13 @@ $ helm install laravel ronas/laravel
 | volumeMounts[0].mountPath | string | `"/mnt/gcs"` |  |
 | volumeMounts[0].name | string | `"gcs"` |  |
 | volumeMounts[0].readOnly | bool | `true` |  |
+| volumeMounts[1].mountPath | string | `"/app/storage/logs"` |  |
+| volumeMounts[1].name | string | `"logs"` |  |
 | volumes[0].name | string | `"gcs"` |  |
 | volumes[0].secret.optional | bool | `true` |  |
 | volumes[0].secret.secretName | string | `"gcs-key"` |  |
+| volumes[1].emptyDir | object | `{}` |  |
+| volumes[1].name | string | `"logs"` |  |
 | workers.enabled | bool | `true` |  |
 | workers.items | list | `[]` |  |
 | workers.resources.limits.cpu | string | `"45m"` |  |

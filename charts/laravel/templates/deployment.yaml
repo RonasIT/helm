@@ -32,10 +32,15 @@ spec:
       - name: logger
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}
-        image: "ronasit/multitail:latest"
+        image: "fluent/fluent-bit:latest"
+        resources:
+{{- toYaml .Values.logger.resources | nindent 12 }}
         volumeMounts:
         - name: logs
           mountPath: "/logs"
+        - name: fluent-bit-conf
+          mountPath: "/fluent-bit/etc/fluent-bit.conf"
+          subPath: "fluent-bit.conf"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
       {{- end }}
       - name: {{ .Chart.Name }}
@@ -74,9 +79,10 @@ spec:
         {{- end }}
         resources:
 {{- toYaml .Values.resources | nindent 12 }}
-      {{- if .Values.volumes }}
+      {{- if or .Values.volumes .Values.logger.enabled }}
       volumes:
         {{- toYaml .Values.volumes | nindent 8 }}
+        {{- toYaml .Values.logger.volumes | nindent 8 }}
       {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
