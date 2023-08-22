@@ -28,12 +28,16 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-      - name: show-logs
+      {{- if .Values.logger.enabled }}
+      - name: logger
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}
-        image: "ubuntu:latest"
-        command: <command to show logs>
+        image: "ronasit/multitail:latest"
+        volumeMounts:
+        - name: logs
+          mountPath: "/logs"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+      {{- end }}
       - name: {{ .Chart.Name }}
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}
