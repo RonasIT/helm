@@ -71,6 +71,8 @@ $ helm install laravel ronas/laravel
 | logger.volumes[0].configMap.name | string | `"fluent-bit-conf-cm"` |  |
 | logger.volumes[0].name | string | `"fluent-bit-conf"` |  |
 | migration.activeDeadlineSeconds | int | `180` |  |
+| migration.annotations."helm.sh/hook" | string | `"post-install"` |  |
+| migration.annotations."helm.sh/hook-delete-policy" | string | `"before-hook-creation,hook-succeeded"` |  |
 | migration.cmd | string | `"/mnt/scripts/migration.sh"` |  |
 | migration.enabled | bool | `true` |  |
 | migration.resources.limits.cpu | string | `"45m"` |  |
