@@ -49,11 +49,15 @@ volumes:
     secret:
       secretName: gcs-key
       optional: true
+  - name: logs
+    emptyDir: {} 
 
 volumeMounts:
   - name: gcs
     mountPath: "/mnt/gcs"
     readOnly: true
+  - name: logs
+    mountPath: "/app/storage/logs"
 
 securityContext: {}
 # capabilities:
@@ -66,6 +70,23 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
+
+logger:
+  enabled: true
+  resources:
+    requests:
+      cpu: 70m
+      memory: 160Mi
+    limits:
+      cpu: 90m
+      memory: 200Mi
+  volumes:
+    - name: fluent-bit-conf
+      configMap:
+         name: fluent-bit-conf-cm
+         items:
+           - key: fluent-bit.conf
+             path: fluent-bit.conf
 
 ingress:
   enabled: true

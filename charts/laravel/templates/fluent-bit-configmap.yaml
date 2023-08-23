@@ -1,0 +1,15 @@
+{{- if .Values.logger.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: fluent-bit-conf-cm
+data:
+  fluent-bit.conf: |-
+    [INPUT]
+        name              tail
+        path              /logs/*.log
+ 
+    [OUTPUT]
+        Name   stdout
+        Match  *
+{{- end }}
