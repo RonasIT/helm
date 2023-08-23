@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 1.3.8](https://img.shields.io/badge/Version-1.3.8-informational?style=flat-square)
+![Version: 1.3.9](https://img.shields.io/badge/Version-1.3.9-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -62,6 +62,8 @@ $ helm install laravel ronas/laravel
 | livenessProbe.path | string | `"/status"` |  |
 | livenessProbe.port | string | `"http"` |  |
 | migration.activeDeadlineSeconds | int | `180` |  |
+| migration.annotations."helm.sh/hook" | string | `"post-install"` |  |
+| migration.annotations."helm.sh/hook-delete-policy" | string | `"before-hook-creation,hook-succeeded"` |  |
 | migration.cmd | string | `"/mnt/scripts/migration.sh"` |  |
 | migration.enabled | bool | `true` |  |
 | migration.resources.limits.cpu | string | `"45m"` |  |
