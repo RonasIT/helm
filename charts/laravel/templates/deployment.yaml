@@ -41,6 +41,9 @@ spec:
         - name: fluent-bit-conf
           mountPath: "/fluent-bit/etc/fluent-bit.conf"
           subPath: "fluent-bit.conf"
+        - name: fluent-bit-conf
+          mountPath: "/fluent-bit/etc/parsers.conf"
+          subPath: "parsers.conf"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
       {{- end }}
       - name: {{ .Chart.Name }}
