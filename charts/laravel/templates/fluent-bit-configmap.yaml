@@ -14,7 +14,6 @@ data:
   fluent-bit.conf: |-
     [SERVICE]
           Parsers_File /fluent-bit/etc/parsers.conf
-          Log_Level       debug
     [INPUT]
           Name              tail
           Path              /logs/*.log
