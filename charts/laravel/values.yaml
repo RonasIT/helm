@@ -87,6 +87,8 @@ logger:
          items:
            - key: fluent-bit.conf
              path: fluent-bit.conf
+           - key: parsers.conf
+             path: parsers.conf
 
 ingress:
   enabled: true
