@@ -4,11 +4,21 @@ kind: ConfigMap
 metadata:
   name: fluent-bit-conf-cm
 data:
+  parsers.conf: |-
+    [MULTILINE_PARSER]
+          Name laravel-parser
+          type regex
+          flush_timeout 1000
+          rule      "start_state"   "/(\[\d\d\d\d-\d\d-\d\d \d\d:\d\d:\d\d\])(.*)/"  "cont"
+          rule      "cont"          "/^.*/"                     "cont"
   fluent-bit.conf: |-
+    [SERVICE]
+          Parsers_File /fluent-bit/etc/parsers.conf
     [INPUT]
-        name              tail
-        path              /logs/*.log
- 
+          Name              tail
+          Path              /logs/*.log
+          Read_from_head    true
+          multiline.parser  laravel-parser
     [OUTPUT]
         Name   stdout
         Match  *

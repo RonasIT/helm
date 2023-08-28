@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 1.4.0](https://img.shields.io/badge/Version-1.4.0-informational?style=flat-square)
+![Version: 1.4.1](https://img.shields.io/badge/Version-1.4.1-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -68,6 +68,8 @@ $ helm install laravel ronas/laravel
 | logger.resources.requests.memory | string | `"160Mi"` |  |
 | logger.volumes[0].configMap.items[0].key | string | `"fluent-bit.conf"` |  |
 | logger.volumes[0].configMap.items[0].path | string | `"fluent-bit.conf"` |  |
+| logger.volumes[0].configMap.items[1].key | string | `"parsers.conf"` |  |
+| logger.volumes[0].configMap.items[1].path | string | `"parsers.conf"` |  |
 | logger.volumes[0].configMap.name | string | `"fluent-bit-conf-cm"` |  |
 | logger.volumes[0].name | string | `"fluent-bit-conf"` |  |
 | migration.activeDeadlineSeconds | int | `180` |  |
