@@ -9,6 +9,7 @@ metadata:
     {{- toYaml .Values.migration.annotations | nindent 4 }}
 spec:
   activeDeadlineSeconds: {{ .Values.migration.activeDeadlineSeconds }}
+  backoffLimit: {{ .Values.migration.backoffLimit }}
   template:
     spec:
      {{- with .Values.imagePullSecrets }}
