@@ -22,6 +22,6 @@ data:
           Read_from_head    true
           multiline.parser  laravel-parser
     [OUTPUT]
-        Name   stdout
-        Match  *
+          Name   stdout
+          Match  *
 {{- end }}
