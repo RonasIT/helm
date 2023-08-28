@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 1.4.2](https://img.shields.io/badge/Version-1.4.2-informational?style=flat-square)
+![Version: 1.4.3](https://img.shields.io/badge/Version-1.4.3-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -67,7 +67,7 @@ $ helm install laravel ronas/laravel
 | logger.resources.requests.cpu | string | `"70m"` |  |
 | logger.resources.requests.memory | string | `"160Mi"` |  |
 | migration.activeDeadlineSeconds | int | `180` |  |
-| migration.annotations."helm.sh/hook" | string | `"post-install"` |  |
+| migration.annotations."helm.sh/hook" | string | `"post-install,pre-upgrade"` |  |
 | migration.annotations."helm.sh/hook-delete-policy" | string | `"before-hook-creation,hook-succeeded"` |  |
 | migration.cmd | string | `"/mnt/scripts/migration.sh"` |  |
 | migration.enabled | bool | `true` |  |

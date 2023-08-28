@@ -50,7 +50,7 @@ volumes:
       secretName: gcs-key
       optional: true
   - name: logs
-    emptyDir: {} 
+    emptyDir: {}
 
 volumeMounts:
   - name: gcs
@@ -230,7 +230,7 @@ cronjobs:
 migration:
   enabled: true
   annotations:
-    "helm.sh/hook": post-install
+    "helm.sh/hook": post-install,pre-upgrade
     "helm.sh/hook-delete-policy": before-hook-creation,hook-succeeded
   activeDeadlineSeconds: 180
   cmd: "/mnt/scripts/migration.sh"
@@ -244,7 +244,7 @@ migration:
 
 workers:
   enabled: true
-# global workers resources (can be overriden in items)
+  # global workers resources (can be overriden in items)
   resources:
     requests:
       cpu: 35m
