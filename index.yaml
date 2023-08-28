@@ -91,6 +91,33 @@ entries:
   laravel:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-08-28T15:39:18.065088819Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.2.2
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.5.2
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 17.8.3
+    - condition: soketi.enabled
+      name: soketi
+      repository: https://helm.soketi.app
+      version: 1.0.2
+    description: A Helm chart for Kubernetes
+    digest: 9b2c235a1d906d729fd4aec4d4a1e7aede0e45b26c24fc8f87283d07fba5301d
+    name: laravel
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/laravel-1.4.2/laravel-1.4.2.tgz
+    version: 1.4.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-08-28T12:05:30.895498538Z"
     dependencies:
     - condition: postgresql.enabled
@@ -320,4 +347,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/react-0.1.1/react-0.1.1.tgz
     version: 0.1.1
-generated: "2023-08-28T12:05:30.89554594Z"
+generated: "2023-08-28T15:39:18.065159519Z"
