@@ -2,7 +2,9 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: fluent-bit-conf-cm
+  name: {{ include "laravel.fullname" . }}-fluentbit-configs
+  labels:
+    {{- include "laravel.labels" . | nindent 4 }}
 data:
   parsers.conf: |-
     [MULTILINE_PARSER]

@@ -80,15 +80,6 @@ logger:
     limits:
       cpu: 90m
       memory: 200Mi
-  volumes:
-    - name: fluent-bit-conf
-      configMap:
-         name: fluent-bit-conf-cm
-         items:
-           - key: fluent-bit.conf
-             path: fluent-bit.conf
-           - key: parsers.conf
-             path: parsers.conf
 
 ingress:
   enabled: true

@@ -88,7 +88,14 @@ spec:
         {{- toYaml .Values.volumes | nindent 8 }}
         {{- end }}
         {{- if .Values.logger.enabled }}
-        {{- toYaml .Values.logger.volumes | nindent 8 }}
+        - name: fluent-bit-conf
+          configMap:
+             name: {{ include "laravel.fullname" . }}-fluentbit-configs
+             items:
+               - key: fluent-bit.conf
+                 path: fluent-bit.conf
+               - key: parsers.conf
+                 path: parsers.conf
         {{- end }}
       {{- end }}
       {{- with .Values.nodeSelector }}
