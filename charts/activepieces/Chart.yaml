@@ -2,7 +2,7 @@ apiVersion: v2
 name: activepieces
 description: DEPRECATED - This Helm chart deploys the https://www.activepieces.com application to Kubernetes.
 type: application
-version: 0.3.2
+version: 0.3.3
 appVersion: "0.3.4"
 deprecated: true
 dependencies:

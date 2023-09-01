@@ -1,6 +1,6 @@
 # nextjs
 
-![Version: 1.0.4](https://img.shields.io/badge/Version-1.0.4-informational?style=flat-square)
+![Version: 1.0.5](https://img.shields.io/badge/Version-1.0.5-informational?style=flat-square)
 
 ## Installing the Chart
 
