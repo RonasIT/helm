@@ -121,7 +121,7 @@ affinity: {}
 postgresql:
   enabled: true
   image:
-    tag: 14.7.0-debian-11-r10
+    tag: 14.9.0-debian-11-r45
   loadBalancer:
     enabled: false
     internal: true

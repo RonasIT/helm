@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 1.4.6](https://img.shields.io/badge/Version-1.4.6-informational?style=flat-square)
+![Version: 1.5.0](https://img.shields.io/badge/Version-1.5.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -15,10 +15,10 @@ $ helm install laravel ronas/laravel
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mysql | 9.5.2 |
-| https://charts.bitnami.com/bitnami | postgresql | 12.2.2 |
-| https://charts.bitnami.com/bitnami | redis | 17.8.3 |
-| https://helm.soketi.app | soketi | 1.0.2 |
+| https://charts.bitnami.com/bitnami | mysql | ^9.12.3 |
+| https://charts.bitnami.com/bitnami | postgresql | ^12.12.10 |
+| https://charts.bitnami.com/bitnami | redis | ^18.1.0 |
+| https://helm.soketi.app | soketi | ^1.0.2 |
 
 ## Values
 
@@ -96,7 +96,7 @@ $ helm install laravel ronas/laravel
 | postgresql.auth.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.auth.username | string | `"pguser"` |  |
 | postgresql.enabled | bool | `true` |  |
-| postgresql.image.tag | string | `"14.7.0-debian-11-r10"` |  |
+| postgresql.image.tag | string | `"14.9.0-debian-11-r45"` |  |
 | postgresql.loadBalancer.enabled | bool | `false` |  |
 | postgresql.loadBalancer.internal | bool | `true` |  |
 | postgresql.primary.persistence.size | string | `"1Gi"` |  |

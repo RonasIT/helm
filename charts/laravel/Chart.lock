@@ -1,15 +1,15 @@
 dependencies:
 - name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 12.2.2
+  version: 12.12.10
 - name: mysql
   repository: https://charts.bitnami.com/bitnami
-  version: 9.5.2
+  version: 9.12.3
 - name: redis
   repository: https://charts.bitnami.com/bitnami
-  version: 17.8.3
+  version: 18.1.0
 - name: soketi
   repository: https://helm.soketi.app
   version: 1.0.2
-digest: sha256:0a741ca3bbdcd3722218e9156d6fb397c84facdf8360e4b10cdabc33ea6d1fc3
-generated: "2023-03-08T20:39:21.006494+01:00"
+digest: sha256:8a789f225aa0276969506bb0cb2d60e62196e9cf8bbcba9023881736c7677e74
+generated: "2023-09-27T17:44:36.379208+02:00"
