@@ -98,10 +98,8 @@ spec:
                  path: parsers.conf
         {{- end }}
       {{- end }}
-      {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
       {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}

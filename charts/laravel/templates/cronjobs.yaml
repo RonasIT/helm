@@ -50,6 +50,8 @@ spec:
           volumes:
             {{- toYaml $root.Values.volumes | nindent 12 }}
           {{- end }}
+          nodeSelector:
+            {{- toYaml $root.Values.nodeSelector | nindent 12 }}
           restartPolicy: "{{ .restartPolicy | default $root.Values.cronjobs.restartPolicy }}"
 {{- end }}
 {{- end }}

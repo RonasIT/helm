@@ -47,5 +47,7 @@ spec:
       volumes:
         {{- toYaml $root.Values.volumes | nindent 8 }}
       {{- end }}
+      nodeSelector:
+        {{- toYaml (.nodeSelector | default $root.Values.workers.nodeSelector | default $root.Values.nodeSelector) | nindent 8 }}
 {{- end }}
 {{- end }}

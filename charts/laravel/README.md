@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 1.5.0](https://img.shields.io/badge/Version-1.5.0-informational?style=flat-square)
+![Version: 1.6.0](https://img.shields.io/badge/Version-1.6.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -31,7 +31,7 @@ $ helm install laravel ronas/laravel
 | autoscaling.targetCPUUtilizationPercentage | int | `80` |  |
 | autoscaling.targetMemoryUtilizationPercentage | int | `80` |  |
 | cronjobs.concurrencyPolicy | string | `"Forbid"` |  |
-| cronjobs.enabled | bool | `false` |  |
+| cronjobs.enabled | bool | `true` |  |
 | cronjobs.resources.limits.cpu | string | `"45m"` |  |
 | cronjobs.resources.limits.memory | string | `"100Mi"` |  |
 | cronjobs.resources.requests.cpu | string | `"35m"` |  |
@@ -46,7 +46,7 @@ $ helm install laravel ronas/laravel
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"nginx"` |  |
-| image.tag | string | `""` |  |
+| image.tag | string | `""` | Oiverrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations."cert-manager.io/cluster-issuer" | string | `"cert-manager"` |  |
 | ingress.annotations."certmanager.k8s.io/cluster-issuer" | string | `"cert-manager"` |  |
@@ -82,13 +82,14 @@ $ helm install laravel ronas/laravel
 | mysql.enabled | bool | `false` |  |
 | mysql.loadBalancer.enabled | bool | `false` |  |
 | mysql.loadBalancer.internal | bool | `true` |  |
+| mysql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | mysql.primary.persistence.size | string | `"1Gi"` |  |
 | mysql.primary.resources.limits.cpu | string | `"180m"` |  |
 | mysql.primary.resources.limits.memory | string | `"256Mi"` |  |
 | mysql.primary.resources.requests.cpu | string | `"150m"` |  |
 | mysql.primary.resources.requests.memory | string | `"192Mi"` |  |
 | nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
+| nodeSelector.default-node-pool | string | `"true"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | postgresql.auth.database | string | `"pgdb"` |  |
@@ -98,6 +99,7 @@ $ helm install laravel ronas/laravel
 | postgresql.image.tag | string | `"14.9.0-debian-11-r45"` |  |
 | postgresql.loadBalancer.enabled | bool | `false` |  |
 | postgresql.loadBalancer.internal | bool | `true` |  |
+| postgresql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | postgresql.primary.persistence.size | string | `"1Gi"` |  |
 | postgresql.primary.resources.limits.cpu | string | `"180m"` |  |
 | postgresql.primary.resources.limits.memory | string | `"90Mi"` |  |
@@ -112,6 +114,7 @@ $ helm install laravel ronas/laravel
 | redis.enabled | bool | `true` |  |
 | redis.loadBalancer.enabled | bool | `false` |  |
 | redis.loadBalancer.internal | bool | `true` |  |
+| redis.master.nodeSelector.default-node-pool | string | `"true"` |  |
 | redis.master.persistence.size | string | `"1Gi"` |  |
 | redis.master.resources.limits.cpu | string | `"54m"` |  |
 | redis.master.resources.limits.memory | string | `"64Mi"` |  |
@@ -125,9 +128,9 @@ $ helm install laravel ronas/laravel
 | securityContext | object | `{}` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
-| serviceAccount.annotations | object | `{}` |  |
-| serviceAccount.create | bool | `true` |  |
-| serviceAccount.name | string | `""` |  |
+| serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
+| serviceAccount.create | bool | `true` | Specifies whether a service account should be created |
+| serviceAccount.name | string | `""` | The name of the service account to use. If not set and create is true, a name is generated using the fullname template |
 | soketi.app.extraEnv[0].name | string | `"SOKETI_DEBUG"` |  |
 | soketi.app.extraEnv[0].value | string | `"1"` |  |
 | soketi.app.extraEnv[1].name | string | `"SOKETI_DEFAULT_APP_ID"` |  |
@@ -141,6 +144,7 @@ $ helm install laravel ronas/laravel
 | soketi.app.resources.requests.cpu | string | `"100m"` |  |
 | soketi.app.resources.requests.memory | string | `"128Mi"` |  |
 | soketi.enabled | bool | `false` |  |
+| soketi.nodeSelector.default-node-pool | string | `"true"` |  |
 | soketi.service.port | int | `6001` |  |
 | tolerations | list | `[]` |  |
 | volumeMounts[0].mountPath | string | `"/mnt/gcs"` |  |
@@ -155,7 +159,4 @@ $ helm install laravel ronas/laravel
 | volumes[1].name | string | `"logs"` |  |
 | workers.enabled | bool | `true` |  |
 | workers.items | list | `[]` |  |
-| workers.resources.limits.cpu | string | `"45m"` |  |
-| workers.resources.limits.memory | string | `"100Mi"` |  |
-| workers.resources.requests.cpu | string | `"35m"` |  |
-| workers.resources.requests.memory | string | `"80Mi"` |  |
+| workers.resources | object | `{"limits":{"cpu":"45m","memory":"100Mi"},"requests":{"cpu":"35m","memory":"80Mi"}}` | Global workers resources (can be overriden in items) |

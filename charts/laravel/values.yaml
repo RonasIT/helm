@@ -1,13 +1,9 @@
-# Default values for nextjs.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
 replicaCount: 1
 
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
+  # -- Oiverrides the image tag whose default is the chart appVersion.
   tag: ''
 
 imagePullSecrets: []
@@ -15,24 +11,23 @@ imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''
 
+nodeSelector:
+  default-node-pool: 'true'
+
 extraEnvVars: []
-# extraEnvVars:
-#   - name: TZ
-#     value: "Europe/Paris"
 
 serviceAccount:
-  # Specifies whether a service account should be created
+  # -- Specifies whether a service account should be created
   create: true
-  # Annotations to add to the service account
+  # -- Annotations to add to the service account
   annotations: {}
-  # The name of the service account to use.
+  # -- The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ''
 
 podAnnotations: {}
 
 podSecurityContext: {}
-# fsGroup: 2000
 
 livenessProbe:
   enabled: true
@@ -112,8 +107,6 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   targetMemoryUtilizationPercentage: 80
 
-nodeSelector: {}
-
 tolerations: []
 
 affinity: {}
@@ -139,6 +132,8 @@ postgresql:
       limits:
         cpu: 180m
         memory: 90Mi
+    nodeSelector:
+      default-node-pool: 'true'
 
 mysql:
   enabled: false
@@ -159,6 +154,8 @@ mysql:
       limits:
         cpu: 180m
         memory: 256Mi
+    nodeSelector:
+      default-node-pool: 'true'
 
 redis:
   enabled: true
@@ -179,6 +176,8 @@ redis:
       limits:
         cpu: 54m
         memory: 64Mi
+    nodeSelector:
+      default-node-pool: 'true'
 
 soketi:
   enabled: false
@@ -207,9 +206,11 @@ soketi:
         valueFrom:
           fieldRef:
             fieldPath: metadata.namespace
+  nodeSelector:
+    default-node-pool: 'true'
 
 cronjobs:
-  enabled: false
+  enabled: true
   schedulers:
     - name: default
       cmd: 'php artisan schedule:run || true'
@@ -244,7 +245,7 @@ migration:
 
 workers:
   enabled: true
-  # global workers resources (can be overriden in items)
+  # -- Global workers resources (can be overriden in items)
   resources:
     requests:
       cpu: 35m
@@ -252,14 +253,15 @@ workers:
     limits:
       cpu: 45m
       memory: 100Mi
-  items: []
-#   - name: default
-#     replicaCount: 1
-#     cmd: "php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=default --memory=128"
-#     resources:
-#       requests:
-#         cpu: 45m
-#         memory: 90Mi
-#       limits:
-#         cpu: 55m
-#         memory: 110Mi
+  items:
+    []
+    # - name: default
+    #   replicaCount: 1
+    #   cmd: 'php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=default --memory=128'
+    #   resources:
+    #     requests:
+    #       cpu: 45m
+    #       memory: 90Mi
+    #     limits:
+    #       cpu: 55m
+    #       memory: 110Mi

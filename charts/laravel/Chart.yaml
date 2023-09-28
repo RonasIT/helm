@@ -3,7 +3,7 @@ appVersion: 1.16.0
 description: A Helm chart for Kubernetes
 name: laravel
 type: application
-version: 1.5.0
+version: 1.6.0
 dependencies:
   - name: postgresql
     condition: postgresql.enabled

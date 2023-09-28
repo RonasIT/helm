@@ -44,4 +44,6 @@ spec:
           configMap:
             name: {{ include "laravel.fullname" . }}-scripts
             defaultMode: 0777
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
 {{- end }}
