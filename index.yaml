@@ -98,6 +98,16 @@ entries:
   angular:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-09-28T12:08:33.338450103Z"
+    description: A Helm chart to deploy Angular web applications on Kubernetes
+    digest: f454a41b9f6fef8d79de3b1831c15e5bed09c86e333992c8fd385351fc7e6566
+    name: angular
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/angular-1.2.0/angular-1.2.0.tgz
+    version: 1.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-09-28T12:00:12.836401041Z"
     description: A Helm chart to deploy Angular web applications on Kubernetes
     digest: 43895d876a6bb11e7428ab59e26e622f845b55d2fb788425498ec173a451a1b9
@@ -528,6 +538,16 @@ entries:
   nextjs:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-09-28T12:08:33.527075872Z"
+    description: A Helm chart for Kubernetes
+    digest: 6d89a2e64d85630c14bb372bbda92589aaedc67e7d8451b027f280bcbfad60a2
+    name: nextjs
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/nextjs-1.1.0/nextjs-1.1.0.tgz
+    version: 1.1.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-09-28T12:00:13.276941858Z"
     description: A Helm chart for Kubernetes
     digest: 5b8260fcffd4016eeda536b2290c2639f63eb0ecb421a5920f46b78d186e3e82
@@ -569,6 +589,16 @@ entries:
   react:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-09-28T12:08:33.712236874Z"
+    description: A Helm chart for Kubernetes
+    digest: 16c56e7ab42601070304a738d2e9c246a90c4eb91d38fd1f60c283708b192798
+    name: react
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/react-0.2.0/react-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-09-28T12:00:13.46471925Z"
     description: A Helm chart for Kubernetes
     digest: 48260605900f2c5f138e04adedb0210862fc10f20399d2b4691f36318fd0956f
@@ -607,4 +637,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/react-0.1.1/react-0.1.1.tgz
     version: 0.1.1
-generated: "2023-09-28T12:00:13.46493265Z"
+generated: "2023-09-28T12:08:33.712321875Z"
