@@ -1,6 +1,6 @@
 # angular
 
-![Version: 1.1.2](https://img.shields.io/badge/Version-1.1.2-informational?style=flat-square)
+![Version: 1.2.0](https://img.shields.io/badge/Version-1.2.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -41,7 +41,7 @@ $ helm install angular ronas/angular
 | ingress.tls[0].hosts[1] | string | `"angular.ronas.cloud"` |  |
 | ingress.tls[0].secretName | string | `"www.angular.ronas.cloud-tls"` |  |
 | nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
+| nodeSelector.default-node-pool | string | `"true"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |

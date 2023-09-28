@@ -1,6 +1,6 @@
 # react
 
-![Version: 0.1.4](https://img.shields.io/badge/Version-0.1.4-informational?style=flat-square)
+![Version: 0.2.0](https://img.shields.io/badge/Version-0.2.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -34,7 +34,7 @@ $ helm install react ronas/react
 | ingress.enabled | bool | `true` |  |
 | ingress.host | string | `"react.ronas.cloud"` |  |
 | nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
+| nodeSelector.default-node-pool | string | `"true"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | replicaCount | int | `1` |  |

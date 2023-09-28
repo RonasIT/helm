@@ -1,6 +1,6 @@
 # nextjs
 
-![Version: 1.0.6](https://img.shields.io/badge/Version-1.0.6-informational?style=flat-square)
+![Version: 1.1.0](https://img.shields.io/badge/Version-1.1.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -38,7 +38,7 @@ $ helm install nextjs ronas/nextjs
 | livenessProbe.path | string | `"/"` |  |
 | livenessProbe.port | string | `"http"` |  |
 | nameOverride | string | `""` |  |
-| nodeSelector | object | `{}` |  |
+| nodeSelector.default-node-pool | string | `"true"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | readinessProbe.enabled | bool | `true` |  |
