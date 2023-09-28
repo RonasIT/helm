@@ -3,6 +3,25 @@ entries:
   activepieces:
   - apiVersion: v2
     appVersion: 0.3.4
+    created: "2023-09-28T12:00:12.661601655Z"
+    dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ~12.2.2
+    - name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ~17.8.2
+    deprecated: true
+    description: DEPRECATED - This Helm chart deploys the https://www.activepieces.com
+      application to Kubernetes.
+    digest: bd2d10f1f2455ee7b3bb6c5b929efa971c7d478ceb803752fa37fb9387cf1251
+    name: activepieces
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/activepieces-0.3.4/activepieces-0.3.4.tgz
+    version: 0.3.4
+  - apiVersion: v2
+    appVersion: 0.3.4
     created: "2023-09-04T12:59:58.405383021Z"
     dependencies:
     - name: postgresql
@@ -79,6 +98,16 @@ entries:
   angular:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-09-28T12:00:12.836401041Z"
+    description: A Helm chart to deploy Angular web applications on Kubernetes
+    digest: 43895d876a6bb11e7428ab59e26e622f845b55d2fb788425498ec173a451a1b9
+    name: angular
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/angular-1.1.2/angular-1.1.2.tgz
+    version: 1.1.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-09-04T12:59:58.568485969Z"
     description: A Helm chart to deploy Angular web applications on Kubernetes
     digest: 3de855b67403aed9f5c0e3e6660e4e925c674663d4c7dbfe094019b9f2554b96
@@ -118,6 +147,33 @@ entries:
     - https://github.com/RonasIT/helm/releases/download/angular-1.0.5/angular-1.0.5.tgz
     version: 1.0.5
   laravel:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-09-28T12:00:13.053569248Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^12.12.10
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^9.12.3
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ^18.1.0
+    - condition: soketi.enabled
+      name: soketi
+      repository: https://helm.soketi.app
+      version: ^1.0.2
+    description: A Helm chart for Kubernetes
+    digest: 6cdf3f391e68d1b77d01fcf85aab6bae8081f93b1b3c3452e40fb1a9b54d9b23
+    name: laravel
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/laravel-1.6.0/laravel-1.6.0.tgz
+    version: 1.6.0
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-09-27T15:51:54.979339978Z"
@@ -472,6 +528,16 @@ entries:
   nextjs:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-09-28T12:00:13.276941858Z"
+    description: A Helm chart for Kubernetes
+    digest: 5b8260fcffd4016eeda536b2290c2639f63eb0ecb421a5920f46b78d186e3e82
+    name: nextjs
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/nextjs-1.0.6/nextjs-1.0.6.tgz
+    version: 1.0.6
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-09-04T12:59:58.885318021Z"
     description: A Helm chart for Kubernetes
     digest: af0fd6c77e967c05c4e6855ed5c8351298806d86db7be852496a0861844b68f0
@@ -503,6 +569,16 @@ entries:
   react:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-09-28T12:00:13.46471925Z"
+    description: A Helm chart for Kubernetes
+    digest: 48260605900f2c5f138e04adedb0210862fc10f20399d2b4691f36318fd0956f
+    name: react
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/react-0.1.4/react-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-09-04T12:59:59.028354786Z"
     description: A Helm chart for Kubernetes
     digest: b966f6d273c0d8d262186979529e57699733f5a77dd9f0529f9d870bc18b1fd5
@@ -531,4 +607,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/react-0.1.1/react-0.1.1.tgz
     version: 0.1.1
-generated: "2023-09-27T15:51:54.979451978Z"
+generated: "2023-09-28T12:00:13.46493265Z"
