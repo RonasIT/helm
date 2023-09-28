@@ -92,7 +92,6 @@ $ helm install laravel ronas/laravel
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | postgresql.auth.database | string | `"pgdb"` |  |
-| postgresql.auth.enablePostgresUser | bool | `false` |  |
 | postgresql.auth.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.auth.username | string | `"pguser"` |  |
 | postgresql.enabled | bool | `true` |  |
