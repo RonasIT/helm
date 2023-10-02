@@ -637,4 +637,16 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/react-0.1.1/react-0.1.1.tgz
     version: 0.1.1
-generated: "2023-09-28T12:08:33.712321875Z"
+  web:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-10-02T15:46:52.694041527Z"
+    description: A Helm chart for Kubernetes to deploy a react, react native, angular,
+      nextjs or vuejs application
+    digest: d42eaa9712a1d70ac2c91672807380124279f9fbff8fb3299a7890b192085a75
+    name: web
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/web-0.1.0/web-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-10-02T15:46:52.694126632Z"
