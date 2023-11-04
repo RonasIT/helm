@@ -98,6 +98,17 @@ entries:
   angular:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-11-04T18:39:34.118896996Z"
+    deprecated: true
+    description: DEPRECATED - A Helm chart to deploy Angular web applications on Kubernetes
+    digest: 4e2a355ab28211bcbde3950d288316e7d3049c6e115f59beb883555bd487f6d0
+    name: angular
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/angular-1.2.1/angular-1.2.1.tgz
+    version: 1.2.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-09-28T12:08:33.338450103Z"
     description: A Helm chart to deploy Angular web applications on Kubernetes
     digest: f454a41b9f6fef8d79de3b1831c15e5bed09c86e333992c8fd385351fc7e6566
@@ -565,6 +576,17 @@ entries:
   nextjs:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2023-11-04T18:39:34.243194782Z"
+    deprecated: true
+    description: DEPRECATED - A Helm chart for Kubernetes
+    digest: 55901d5607c584d52654cec6db34bdeeb6014b1066d215feb179feed35918fd2
+    name: nextjs
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/nextjs-1.1.1/nextjs-1.1.1.tgz
+    version: 1.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-09-28T12:08:33.527075872Z"
     description: A Helm chart for Kubernetes
     digest: 6d89a2e64d85630c14bb372bbda92589aaedc67e7d8451b027f280bcbfad60a2
@@ -614,6 +636,17 @@ entries:
     - https://github.com/RonasIT/helm/releases/download/nextjs-1.0.3/nextjs-1.0.3.tgz
     version: 1.0.3
   react:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-11-04T18:39:34.406762442Z"
+    deprecated: true
+    description: DEPRECATED - A Helm chart for Kubernetes
+    digest: 5c5f6199a7179f4b7da049a55b4f2e81c90a69c6a3448f3531ed28d0f45fee72
+    name: react
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/react-0.2.1/react-0.2.1.tgz
+    version: 0.2.1
   - apiVersion: v2
     appVersion: 1.16.0
     created: "2023-09-28T12:08:33.712236874Z"
@@ -676,4 +709,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/web-0.1.0/web-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-04T18:34:20.584045268Z"
+generated: "2023-11-04T18:39:34.406876054Z"
