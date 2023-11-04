@@ -1,6 +1,7 @@
 apiVersion: v2
 appVersion: 1.16.0
-description: A Helm chart to deploy Angular web applications on Kubernetes
+description: DEPRECATED - A Helm chart to deploy Angular web applications on Kubernetes
 name: angular
 type: application
-version: 1.2.0
+version: 1.2.1
+deprecated: true
