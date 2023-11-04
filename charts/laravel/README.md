@@ -54,10 +54,11 @@ $ helm install laravel ronas/laravel
 | ingress.annotations."kubernetes.io/ingress.class" | string | `"nginx"` |  |
 | ingress.className | string | `""` |  |
 | ingress.enabled | bool | `true` |  |
-| ingress.host | string | `"laravel.ronas.cloud"` |  |
-| ingress.hosts | object | `{}` |  |
-| ingress.path | string | `"/"` |  |
-| ingress.pathType | string | `"ImplementationSpecific"` |  |
+| ingress.hosts[0].host | string | `"api.ronas.cloud"` |  |
+| ingress.hosts[0].paths[0].path | string | `"/"` |  |
+| ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
+| ingress.tls[0].hosts[0] | string | `"api.ronas.cloud"` |  |
+| ingress.tls[0].secretName | string | `"api.ronas.cloud-tls"` |  |
 | livenessProbe.enabled | bool | `true` |  |
 | livenessProbe.path | string | `"/status"` |  |
 | livenessProbe.port | string | `"http"` |  |
@@ -80,8 +81,6 @@ $ helm install laravel ronas/laravel
 | mysql.auth.existingSecret | string | `"mysql-credentials"` |  |
 | mysql.auth.username | string | `"myuser"` |  |
 | mysql.enabled | bool | `false` |  |
-| mysql.loadBalancer.enabled | bool | `false` |  |
-| mysql.loadBalancer.internal | bool | `true` |  |
 | mysql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | mysql.primary.persistence.size | string | `"1Gi"` |  |
 | mysql.primary.resources.limits.cpu | string | `"180m"` |  |
@@ -96,9 +95,6 @@ $ helm install laravel ronas/laravel
 | postgresql.auth.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.auth.username | string | `"pguser"` |  |
 | postgresql.enabled | bool | `true` |  |
-| postgresql.image.tag | string | `"14.9.0-debian-11-r45"` |  |
-| postgresql.loadBalancer.enabled | bool | `false` |  |
-| postgresql.loadBalancer.internal | bool | `true` |  |
 | postgresql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | postgresql.primary.persistence.size | string | `"1Gi"` |  |
 | postgresql.primary.resources.limits.cpu | string | `"180m"` |  |
@@ -112,8 +108,6 @@ $ helm install laravel ronas/laravel
 | redis.auth.existingSecret | string | `"redis-credentials"` |  |
 | redis.auth.existingSecretPasswordKey | string | `"password"` |  |
 | redis.enabled | bool | `true` |  |
-| redis.loadBalancer.enabled | bool | `false` |  |
-| redis.loadBalancer.internal | bool | `true` |  |
 | redis.master.nodeSelector.default-node-pool | string | `"true"` |  |
 | redis.master.persistence.size | string | `"1Gi"` |  |
 | redis.master.resources.limits.cpu | string | `"54m"` |  |

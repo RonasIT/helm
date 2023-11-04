@@ -84,13 +84,15 @@ ingress:
     ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: cert-manager
     certmanager.k8s.io/cluster-issuer: cert-manager
-  host: laravel.ronas.cloud
-  pathType: ImplementationSpecific
-  path: /
-  hosts: {}
-# - host: laravel.ronas.cloud
-#   pathType: ImplementationSpecific
-#   path: /
+  hosts:
+    - host: api.ronas.cloud
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls:
+    - secretName: api.ronas.cloud-tls
+      hosts:
+        - api.ronas.cloud
 
 resources:
   requests:
@@ -113,11 +115,6 @@ affinity: {}
 
 postgresql:
   enabled: true
-  image:
-    tag: 14.9.0-debian-11-r45
-  loadBalancer:
-    enabled: false
-    internal: true
   auth:
     database: 'pgdb'
     username: 'pguser'
@@ -137,9 +134,6 @@ postgresql:
 
 mysql:
   enabled: false
-  loadBalancer:
-    enabled: false
-    internal: true
   auth:
     database: 'mydb'
     username: 'myuser'
@@ -159,9 +153,6 @@ mysql:
 
 redis:
   enabled: true
-  loadBalancer:
-    enabled: false
-    internal: true
   auth:
     existingSecret: 'redis-credentials'
     existingSecretPasswordKey: 'password'
