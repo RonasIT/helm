@@ -56,6 +56,8 @@ ingress:
     cert-manager.io/cluster-issuer: cert-manager
     certmanager.k8s.io/cluster-issuer: cert-manager
     nginx.ingress.kubernetes.io/from-to-www-redirect: 'true'
+    nginx.ingress.kubernetes.io/server-snippet: >
+      add_header X-Robots-Tag "noindex, nofollow";
     nginx.ingress.kubernetes.io/configuration-snippet: >
       if ($request_uri ~* \.(js|jpg|jpeg|gif|png|css|tgz|gz|rar|bz2|doc|pdf|ppt|tar|wav|bmp|rtf|swf|ico|flv|txt|woff|woff2|svg|mov)(&.+)?$) {
         expires 1M;

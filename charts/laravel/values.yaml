@@ -84,6 +84,8 @@ ingress:
     ingress.kubernetes.io/rewrite-target: /
     cert-manager.io/cluster-issuer: cert-manager
     certmanager.k8s.io/cluster-issuer: cert-manager
+    nginx.ingress.kubernetes.io/server-snippet: >
+      add_header X-Robots-Tag "noindex, nofollow";
   hosts:
     - host: api.ronas.cloud
       paths:

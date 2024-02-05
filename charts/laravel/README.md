@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-informational?style=flat-square)
+![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -52,6 +52,7 @@ $ helm install laravel ronas/laravel
 | ingress.annotations."certmanager.k8s.io/cluster-issuer" | string | `"cert-manager"` |  |
 | ingress.annotations."ingress.kubernetes.io/rewrite-target" | string | `"/"` |  |
 | ingress.annotations."kubernetes.io/ingress.class" | string | `"nginx"` |  |
+| ingress.annotations."nginx.ingress.kubernetes.io/server-snippet" | string | `"add_header X-Robots-Tag \"noindex, nofollow\";\n"` |  |
 | ingress.className | string | `""` |  |
 | ingress.enabled | bool | `true` |  |
 | ingress.hosts[0].host | string | `"api.ronas.cloud"` |  |
