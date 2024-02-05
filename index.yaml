@@ -170,6 +170,33 @@ entries:
   laravel:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-02-05T07:13:19.985546619Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^13.2.1
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^9.14.1
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ^18.2.0
+    - condition: soketi.enabled
+      name: soketi
+      repository: https://helm.soketi.app
+      version: ^2.0.0
+    description: A Helm chart for Kubernetes to deploy Laravel applications
+    digest: 24e1728f73ff47249a72875512f2f94c285d3e489d72e376c64c45ca849aec7a
+    name: laravel
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/laravel-2.1.0/laravel-2.1.0.tgz
+    version: 2.1.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-11-04T18:34:20.583865968Z"
     dependencies:
     - condition: postgresql.enabled
@@ -700,6 +727,17 @@ entries:
   web:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-02-05T07:13:20.333112027Z"
+    description: A Helm chart for Kubernetes to deploy a react, react native, angular,
+      nextjs or vuejs application
+    digest: 94f34b3d63247db538c48bbbcb339ae78a97c2d0bf2c78697921a3832f70efe9
+    name: web
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/web-0.2.0/web-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2023-10-02T15:46:52.694041527Z"
     description: A Helm chart for Kubernetes to deploy a react, react native, angular,
       nextjs or vuejs application
@@ -709,4 +747,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/web-0.1.0/web-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-04T18:39:34.406876054Z"
+generated: "2024-02-05T07:13:20.33331173Z"
