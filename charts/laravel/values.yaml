@@ -70,11 +70,10 @@ logger:
   enabled: true
   resources:
     requests:
-      cpu: 70m
-      memory: 160Mi
+      cpu: 50m
+      memory: 64Mi
     limits:
-      cpu: 90m
-      memory: 200Mi
+      memory: 64Mi
 
 ingress:
   enabled: true
@@ -98,11 +97,10 @@ ingress:
 
 resources:
   requests:
-    cpu: 70m
-    memory: 160Mi
+    cpu: 100m
+    memory: 192Mi
   limits:
-    cpu: 90m
-    memory: 200Mi
+    memory: 192Mi
 
 autoscaling:
   enabled: false
@@ -126,11 +124,10 @@ postgresql:
       size: 1Gi
     resources:
       requests:
-        cpu: 150m
-        memory: 70Mi
+        cpu: 100m
+        memory: 128Mi
       limits:
-        cpu: 180m
-        memory: 90Mi
+        memory: 128Mi
     nodeSelector:
       default-node-pool: 'true'
 
@@ -145,11 +142,10 @@ mysql:
       size: 1Gi
     resources:
       requests:
-        cpu: 150m
+        cpu: 100m
         memory: 192Mi
       limits:
-        cpu: 180m
-        memory: 256Mi
+        memory: 192Mi
     nodeSelector:
       default-node-pool: 'true'
 
@@ -164,10 +160,9 @@ redis:
       size: 1Gi
     resources:
       requests:
-        cpu: 42m
-        memory: 32Mi
+        cpu: 50m
+        memory: 64Mi
       limits:
-        cpu: 54m
         memory: 64Mi
     nodeSelector:
       default-node-pool: 'true'
@@ -182,8 +177,7 @@ soketi:
         cpu: 100m
         memory: 128Mi
       limits:
-        cpu: 250m
-        memory: 256Mi
+        memory: 128Mi
     extraEnv:
       - name: SOKETI_DEBUG
         value: '1'
@@ -214,11 +208,10 @@ cronjobs:
   restartPolicy: 'Never'
   resources:
     requests:
-      cpu: 35m
-      memory: 80Mi
+      cpu: 50m
+      memory: 128Mi
     limits:
-      cpu: 45m
-      memory: 100Mi
+      memory: 128Mi
 
 migration:
   enabled: true
@@ -230,22 +223,20 @@ migration:
   cmd: '/mnt/scripts/migration.sh'
   resources:
     requests:
-      cpu: 35m
-      memory: 80Mi
+      cpu: 50m
+      memory: 128Mi
     limits:
-      cpu: 45m
-      memory: 100Mi
+      memory: 128Mi
 
 workers:
   enabled: true
-  # -- Global workers resources (can be overriden in items)
+  # -- Global workers resources (can be overwritten in items)
   resources:
     requests:
-      cpu: 35m
-      memory: 80Mi
+      cpu: 50m
+      memory: 128Mi
     limits:
-      cpu: 45m
-      memory: 100Mi
+      memory: 128Mi
   items:
     []
     # - name: default
@@ -253,8 +244,7 @@ workers:
     #   cmd: 'php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=default --memory=128'
     #   resources:
     #     requests:
-    #       cpu: 45m
-    #       memory: 90Mi
+    #       cpu: 50m
+    #       memory: 128Mi
     #     limits:
-    #       cpu: 55m
-    #       memory: 110Mi
+    #       memory: 128Mi

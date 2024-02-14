@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.1.0](https://img.shields.io/badge/Version-2.1.0-informational?style=flat-square)
+![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -32,10 +32,9 @@ $ helm install laravel ronas/laravel
 | autoscaling.targetMemoryUtilizationPercentage | int | `80` |  |
 | cronjobs.concurrencyPolicy | string | `"Forbid"` |  |
 | cronjobs.enabled | bool | `true` |  |
-| cronjobs.resources.limits.cpu | string | `"45m"` |  |
-| cronjobs.resources.limits.memory | string | `"100Mi"` |  |
-| cronjobs.resources.requests.cpu | string | `"35m"` |  |
-| cronjobs.resources.requests.memory | string | `"80Mi"` |  |
+| cronjobs.resources.limits.memory | string | `"128Mi"` |  |
+| cronjobs.resources.requests.cpu | string | `"50m"` |  |
+| cronjobs.resources.requests.memory | string | `"128Mi"` |  |
 | cronjobs.restartPolicy | string | `"Never"` |  |
 | cronjobs.schedule | string | `"*/1 * * * *"` |  |
 | cronjobs.schedulers[0].cmd | string | `"php artisan schedule:run || true"` |  |
@@ -64,29 +63,26 @@ $ helm install laravel ronas/laravel
 | livenessProbe.path | string | `"/status"` |  |
 | livenessProbe.port | string | `"http"` |  |
 | logger.enabled | bool | `true` |  |
-| logger.resources.limits.cpu | string | `"90m"` |  |
-| logger.resources.limits.memory | string | `"200Mi"` |  |
-| logger.resources.requests.cpu | string | `"70m"` |  |
-| logger.resources.requests.memory | string | `"160Mi"` |  |
+| logger.resources.limits.memory | string | `"64Mi"` |  |
+| logger.resources.requests.cpu | string | `"50m"` |  |
+| logger.resources.requests.memory | string | `"64Mi"` |  |
 | migration.activeDeadlineSeconds | int | `180` |  |
 | migration.annotations."helm.sh/hook" | string | `"post-install,pre-upgrade"` |  |
 | migration.annotations."helm.sh/hook-delete-policy" | string | `"before-hook-creation"` |  |
 | migration.backoffLimit | int | `1` |  |
 | migration.cmd | string | `"/mnt/scripts/migration.sh"` |  |
 | migration.enabled | bool | `true` |  |
-| migration.resources.limits.cpu | string | `"45m"` |  |
-| migration.resources.limits.memory | string | `"100Mi"` |  |
-| migration.resources.requests.cpu | string | `"35m"` |  |
-| migration.resources.requests.memory | string | `"80Mi"` |  |
+| migration.resources.limits.memory | string | `"128Mi"` |  |
+| migration.resources.requests.cpu | string | `"50m"` |  |
+| migration.resources.requests.memory | string | `"128Mi"` |  |
 | mysql.auth.database | string | `"mydb"` |  |
 | mysql.auth.existingSecret | string | `"mysql-credentials"` |  |
 | mysql.auth.username | string | `"myuser"` |  |
 | mysql.enabled | bool | `false` |  |
 | mysql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | mysql.primary.persistence.size | string | `"1Gi"` |  |
-| mysql.primary.resources.limits.cpu | string | `"180m"` |  |
-| mysql.primary.resources.limits.memory | string | `"256Mi"` |  |
-| mysql.primary.resources.requests.cpu | string | `"150m"` |  |
+| mysql.primary.resources.limits.memory | string | `"192Mi"` |  |
+| mysql.primary.resources.requests.cpu | string | `"100m"` |  |
 | mysql.primary.resources.requests.memory | string | `"192Mi"` |  |
 | nameOverride | string | `""` |  |
 | nodeSelector.default-node-pool | string | `"true"` |  |
@@ -98,10 +94,9 @@ $ helm install laravel ronas/laravel
 | postgresql.enabled | bool | `true` |  |
 | postgresql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | postgresql.primary.persistence.size | string | `"1Gi"` |  |
-| postgresql.primary.resources.limits.cpu | string | `"180m"` |  |
-| postgresql.primary.resources.limits.memory | string | `"90Mi"` |  |
-| postgresql.primary.resources.requests.cpu | string | `"150m"` |  |
-| postgresql.primary.resources.requests.memory | string | `"70Mi"` |  |
+| postgresql.primary.resources.limits.memory | string | `"128Mi"` |  |
+| postgresql.primary.resources.requests.cpu | string | `"100m"` |  |
+| postgresql.primary.resources.requests.memory | string | `"128Mi"` |  |
 | readinessProbe.enabled | bool | `true` |  |
 | readinessProbe.path | string | `"/status"` |  |
 | readinessProbe.port | string | `"http"` |  |
@@ -111,15 +106,13 @@ $ helm install laravel ronas/laravel
 | redis.enabled | bool | `true` |  |
 | redis.master.nodeSelector.default-node-pool | string | `"true"` |  |
 | redis.master.persistence.size | string | `"1Gi"` |  |
-| redis.master.resources.limits.cpu | string | `"54m"` |  |
 | redis.master.resources.limits.memory | string | `"64Mi"` |  |
-| redis.master.resources.requests.cpu | string | `"42m"` |  |
-| redis.master.resources.requests.memory | string | `"32Mi"` |  |
+| redis.master.resources.requests.cpu | string | `"50m"` |  |
+| redis.master.resources.requests.memory | string | `"64Mi"` |  |
 | replicaCount | int | `1` |  |
-| resources.limits.cpu | string | `"90m"` |  |
-| resources.limits.memory | string | `"200Mi"` |  |
-| resources.requests.cpu | string | `"70m"` |  |
-| resources.requests.memory | string | `"160Mi"` |  |
+| resources.limits.memory | string | `"192Mi"` |  |
+| resources.requests.cpu | string | `"100m"` |  |
+| resources.requests.memory | string | `"192Mi"` |  |
 | securityContext | object | `{}` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
@@ -134,8 +127,7 @@ $ helm install laravel ronas/laravel
 | soketi.app.extraEnv[2].valueFrom.fieldRef.fieldPath | string | `"metadata.namespace"` |  |
 | soketi.app.extraEnv[3].name | string | `"SOKETI_DEFAULT_APP_SECRET"` |  |
 | soketi.app.extraEnv[3].valueFrom.fieldRef.fieldPath | string | `"metadata.namespace"` |  |
-| soketi.app.resources.limits.cpu | string | `"250m"` |  |
-| soketi.app.resources.limits.memory | string | `"256Mi"` |  |
+| soketi.app.resources.limits.memory | string | `"128Mi"` |  |
 | soketi.app.resources.requests.cpu | string | `"100m"` |  |
 | soketi.app.resources.requests.memory | string | `"128Mi"` |  |
 | soketi.enabled | bool | `false` |  |
@@ -154,4 +146,4 @@ $ helm install laravel ronas/laravel
 | volumes[1].name | string | `"logs"` |  |
 | workers.enabled | bool | `true` |  |
 | workers.items | list | `[]` |  |
-| workers.resources | object | `{"limits":{"cpu":"45m","memory":"100Mi"},"requests":{"cpu":"35m","memory":"80Mi"}}` | Global workers resources (can be overriden in items) |
+| workers.resources | object | `{"limits":{"memory":"128Mi"},"requests":{"cpu":"50m","memory":"128Mi"}}` | Global workers resources (can be overwritten in items) |
