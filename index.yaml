@@ -170,6 +170,33 @@ entries:
   laravel:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-02-14T06:42:52.142234645Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^13.2.1
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^9.14.1
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ^18.2.0
+    - condition: soketi.enabled
+      name: soketi
+      repository: https://helm.soketi.app
+      version: ^2.0.0
+    description: A Helm chart for Kubernetes to deploy Laravel applications
+    digest: 9c2f5523d9cb93b2c040a32af388ea347fd3e966b94d846348b7ecd54a21fcee
+    name: laravel
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/laravel-2.1.1/laravel-2.1.1.tgz
+    version: 2.1.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-02-05T07:13:19.985546619Z"
     dependencies:
     - condition: postgresql.enabled
@@ -727,6 +754,17 @@ entries:
   web:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2024-02-14T06:42:52.242673926Z"
+    description: A Helm chart for Kubernetes to deploy a react, react native, angular,
+      nextjs or vuejs application
+    digest: 76c93f28e2816e8ef06816af1b9d579ffb7aef98bdf95126797e6b83b3bb912b
+    name: web
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/web-0.2.1/web-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-02-05T07:13:20.333112027Z"
     description: A Helm chart for Kubernetes to deploy a react, react native, angular,
       nextjs or vuejs application
@@ -747,4 +785,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/web-0.1.0/web-0.1.0.tgz
     version: 0.1.0
-generated: "2024-02-05T07:13:20.33331173Z"
+generated: "2024-02-14T06:42:52.242842921Z"
