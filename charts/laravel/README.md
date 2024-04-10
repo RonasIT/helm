@@ -114,7 +114,7 @@ $ helm install laravel ronas/laravel
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"192Mi"` |  |
 | securityContext | object | `{}` |  |
-| service.annotations | string | `nil` |  |
+| service.annotations | object | `{}` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
