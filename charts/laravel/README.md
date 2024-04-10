@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square)
+![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -114,6 +114,7 @@ $ helm install laravel ronas/laravel
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"192Mi"` |  |
 | securityContext | object | `{}` |  |
+| service.annotations | string | `nil` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
