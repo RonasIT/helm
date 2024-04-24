@@ -7,16 +7,17 @@ kind: Deployment
 metadata:
   name: {{ regexReplaceAll "_" .name "-" }}-worker
   labels:
-    {{- include "laravel.labels" $root | nindent 4 }}
+    {{- $workerName := .name }}
+    {{- include "laravel.workerLabels" (dict "Values" $root.Values "Chart" $root.Chart "Release" $root.Release "workerName" $workerName) | nindent 4 }}
 spec:
   replicas: {{ .replicaCount | default 1 }}
   selector:
     matchLabels:
-      {{- include "laravel.selectorLabels" $root | nindent 6 }}
+      {{- include "laravel.workerSelectorLabels" (dict "Values" $root.Values "Chart" $root.Chart "Release" $root.Release "workerName" $workerName) | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "laravel.selectorLabels" $root | nindent 8 }}
+        {{- include "laravel.workerSelectorLabels" (dict "Values" $root.Values "Chart" $root.Chart "Release" $root.Release "workerName" $workerName) | nindent 8 }}
     spec:
       {{- with $root.Values.imagePullSecrets }}
       imagePullSecrets:
