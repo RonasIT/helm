@@ -1,6 +1,12 @@
-{{- if .Values.workers.enabled }}
 {{- range .Values.workers.items }}
-  {{- if and .autoscaling (eq .autoscaling.enabled true) }} 
+  {{- $autoscalingEnabled := $.Values.workers.autoscaling.enabled }} 
+  {{- if hasKey . "autoscaling" }}
+    {{- if hasKey .autoscaling "enabled" }}
+      {{- $autoscalingEnabled = .autoscaling.enabled }}  
+    {{- end }}
+  {{- end }}
+
+  {{- if $autoscalingEnabled }} 
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPod Autoscaler
@@ -13,10 +19,10 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: {{ regexReplaceAll "_" .name "-" }}-worker
-  minReplicas: {{ .autoscaling.minReplicas | default $.Values.workers.autoscaling.minReplicas }}
-  maxReplicas: {{ .autoscaling.maxReplicas | default $.Values.workers.autoscaling.maxReplicas }}
+  minReplicas: {{ .autoscaling.minReplicas | default 1 }}
+  maxReplicas: {{ .autoscaling.maxReplicas | default 3 }}
   metrics:
-    {{- if or .autoscaling.targetCPUUtilizationPercentage $.Values.workers.autoscaling.targetCPUUtilizationPercentage }}
+    {{- if or (.autoscaling.targetCPUUtilizationPercentage) ($.Values.workers.autoscaling.targetCPUUtilizationPercentage) }}
     - type: Resource
       resource:
         name: cpu
@@ -24,7 +30,7 @@ spec:
           type: Utilization
           averageUtilization: {{ .autoscaling.targetCPUUtilizationPercentage | default $.Values.workers.autoscaling.targetCPUUtilizationPercentage }}
     {{- end }}
-    {{- if or .autoscaling.targetMemoryUtilizationPercentage $.Values.workers.autoscaling.targetMemoryUtilizationPercentage }}
+    {{- if or (.autoscaling.targetMemoryUtilizationPercentage) ($.Values.workers.autoscaling.targetMemoryUtilizationPercentage) }}
     - type: Resource
       resource:
         name: memory
@@ -33,5 +39,4 @@ spec:
           averageUtilization: {{ .autoscaling.targetMemoryUtilizationPercentage | default $.Values.workers.autoscaling.targetMemoryUtilizationPercentage }}
     {{- end }}
   {{- end }}
-{{- end }}
 {{- end }}

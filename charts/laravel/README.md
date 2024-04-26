@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.2.0](https://img.shields.io/badge/Version-2.2.0-informational?style=flat-square)
+![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -114,7 +114,7 @@ $ helm install laravel ronas/laravel
 | resources.requests.cpu | string | `"100m"` |  |
 | resources.requests.memory | string | `"192Mi"` |  |
 | securityContext | object | `{}` |  |
-| service.annotations | string | `nil` |  |
+| service.annotations | object | `{}` |  |
 | service.port | int | `80` |  |
 | service.type | string | `"ClusterIP"` |  |
 | serviceAccount.annotations | object | `{}` | Annotations to add to the service account |
@@ -145,6 +145,7 @@ $ helm install laravel ronas/laravel
 | volumes[0].secret.secretName | string | `"gcs-key"` |  |
 | volumes[1].emptyDir | object | `{}` |  |
 | volumes[1].name | string | `"logs"` |  |
+| workers.autoscaling | object | `{"enabled":false,"maxReplicas":3,"minReplicas":1,"targetCPUUtilizationPercentage":60}` | Global workers autoscaling settings (can be overwritten in items) |
 | workers.enabled | bool | `true` |  |
 | workers.items | list | `[]` |  |
-| workers.resources | object | `{"limits":{"memory":"128Mi"},"requests":{"cpu":"50m","memory":"128Mi"}}` | Global workers resources (can be overwritten in items) |
+| workers.resources | object | `{"limits":{"limits":"50m","memory":"128Mi"},"requests":{"cpu":"25m","memory":"128Mi"}}` | Global workers resources (can be overwritten in items) |
