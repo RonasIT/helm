@@ -6,7 +6,7 @@
     {{- end }}
   {{- end }}
 
-  {{- if $autoscalingEnabled }} 
+  {{- if $autoscalingEnabled }}
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPod Autoscaler
@@ -37,6 +37,29 @@ spec:
         target:
           type: Utilization
           averageUtilization: {{ .autoscaling.targetMemoryUtilizationPercentage | default $.Values.workers.autoscaling.targetMemoryUtilizationPercentage }}
+    {{- end }}
+    {{- if .autoscaling.behavior }}
+  behavior:
+    {{- if .autoscaling.behavior.scaleDown }}
+    scaleDown:
+      stabilizationWindowSeconds: {{ .autoscaling.behavior.scaleDown.stabilizationWindowSeconds | default 0 }}
+      policies:
+        {{- range .autoscaling.behavior.scaleDown.policies }}
+        - type: Pods
+          value: {{ .value }}
+          periodSeconds: {{ .periodSeconds }}
+        {{- end }}
+    {{- end }}
+    {{- if .autoscaling.behavior.scaleUp }}
+    scaleUp:
+      stabilizationWindowSeconds: {{ .autoscaling.behavior.scaleUp.stabilizationWindowSeconds | default 0 }}
+      policies:
+        {{- range .autoscaling.behavior.scaleUp.policies }}
+        - type: Pods
+          value: {{ .value }}
+          periodSeconds: {{ .periodSeconds }}
+        {{- end }}
+    {{- end }}
     {{- end }}
   {{- end }}
 {{- end }}
