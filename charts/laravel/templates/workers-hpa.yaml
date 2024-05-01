@@ -1,0 +1,65 @@
+{{- range .Values.workers.items }}
+  {{- $autoscalingEnabled := $.Values.workers.autoscaling.enabled }} 
+  {{- if hasKey . "autoscaling" }}
+    {{- if hasKey .autoscaling "enabled" }}
+      {{- $autoscalingEnabled = .autoscaling.enabled }}  
+    {{- end }}
+  {{- end }}
+
+  {{- if $autoscalingEnabled }}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPod Autoscaler
+metadata:
+  name: {{ regexReplaceAll "_" .name "-" }}-worker-hpa
+  labels:
+    {{- include "laravel.labels" (dict "Values" $.Values "Chart" $.Chart "Release" $.Release "workerName" .name) | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ regexReplaceAll "_" .name "-" }}-worker
+  minReplicas: {{ .autoscaling.minReplicas | default 1 }}
+  maxReplicas: {{ .autoscaling.maxReplicas | default 3 }}
+  metrics:
+    {{- if or (.autoscaling.targetCPUUtilizationPercentage) ($.Values.workers.autoscaling.targetCPUUtilizationPercentage) }}
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: {{ .autoscaling.targetCPUUtilizationPercentage | default $.Values.workers.autoscaling.targetCPUUtilizationPercentage }}
+    {{- end }}
+    {{- if or (.autoscaling.targetMemoryUtilizationPercentage) ($.Values.workers.autoscaling.targetMemoryUtilizationPercentage) }}
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: {{ .autoscaling.targetMemoryUtilizationPercentage | default $.Values.workers.autoscaling.targetMemoryUtilizationPercentage }}
+    {{- end }}
+    {{- if .autoscaling.behavior }}
+  behavior:
+    {{- if .autoscaling.behavior.scaleDown }}
+    scaleDown:
+      stabilizationWindowSeconds: {{ .autoscaling.behavior.scaleDown.stabilizationWindowSeconds | default 0 }}
+      policies:
+        {{- range .autoscaling.behavior.scaleDown.policies }}
+        - type: Pods
+          value: {{ .value }}
+          periodSeconds: {{ .periodSeconds }}
+        {{- end }}
+    {{- end }}
+    {{- if .autoscaling.behavior.scaleUp }}
+    scaleUp:
+      stabilizationWindowSeconds: {{ .autoscaling.behavior.scaleUp.stabilizationWindowSeconds | default 0 }}
+      policies:
+        {{- range .autoscaling.behavior.scaleUp.policies }}
+        - type: Pods
+          value: {{ .value }}
+          periodSeconds: {{ .periodSeconds }}
+        {{- end }}
+    {{- end }}
+    {{- end }}
+  {{- end }}
+{{- end }}

@@ -70,3 +70,22 @@ networking.eks.amazonaws.com/load-balancer-type: Internal
 service.beta.kubernetes.io/azure-load-balancer-internal: "true"
 {{- end }}
 
+{{/*
+Worker-specific selector labels
+*/}}
+{{- define "laravel.workerSelectorLabels" -}}
+app.kubernetes.io/name: {{ include "laravel.name" . }}-{{ .workerName }}
+app.kubernetes.io/instance: {{ .Release.Name }}-{{ .workerName }}
+{{- end }}
+
+{{/*
+Worker-specific common labels
+*/}}
+{{- define "laravel.workerLabels" -}}
+helm.sh/chart: {{ include "laravel.chart" . }}
+{{ include "laravel.workerSelectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
