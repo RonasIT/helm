@@ -9,7 +9,7 @@
   {{- if $autoscalingEnabled }}
 ---
 apiVersion: autoscaling/v2
-kind: HorizontalPod Autoscaler
+kind: HorizontalPodAutoscaler
 metadata:
   name: {{ regexReplaceAll "_" .name "-" }}-worker-hpa
   labels:
