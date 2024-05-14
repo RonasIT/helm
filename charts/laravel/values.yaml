@@ -246,19 +246,18 @@ workers:
       limits: 50m
       memory: 128Mi
   items:
-    []
-    # - name: default
-    #   replicaCount: 1
-    #   cmd: 'php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=default --memory=128'
-    #   autoscaling:
-    #     enabled: false
-    #     minReplicas: 2
-    #     maxReplicas: 3
-    #     targetCPUUtilizationPercentage: 60
-    #   resources:
-    #     requests:
-    #       cpu: 25m
-    #       memory: 128Mi
-    #     limits:
-    #       cpu: 25m
-    #       memory: 128Mi
+    - name: default
+      replicaCount: 1
+      cmd: 'php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=default --memory=128'
+      autoscaling:
+        enabled: false
+        minReplicas: 2
+        maxReplicas: 3
+        targetCPUUtilizationPercentage: 60
+      resources:
+        requests:
+          cpu: 25m
+          memory: 128Mi
+        limits:
+          cpu: 25m
+          memory: 128Mi
