@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.3.1](https://img.shields.io/badge/Version-2.3.1-informational?style=flat-square)
+![Version: 2.3.2](https://img.shields.io/badge/Version-2.3.2-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -148,4 +148,4 @@ $ helm install laravel ronas/laravel
 | workers.autoscaling | object | `{"enabled":false,"maxReplicas":3,"minReplicas":1,"targetCPUUtilizationPercentage":60}` | Global workers autoscaling settings (can be overwritten in items) |
 | workers.enabled | bool | `true` |  |
 | workers.items | list | `[]` |  |
-| workers.resources | object | `{"limits":{"limits":"50m","memory":"128Mi"},"requests":{"cpu":"25m","memory":"128Mi"}}` | Global workers resources (can be overwritten in items) |
+| workers.resources | object | `{"limits":{"cpu":"50m","memory":"128Mi"},"requests":{"cpu":"25m","memory":"128Mi"}}` | Global workers resources (can be overwritten in items) |
