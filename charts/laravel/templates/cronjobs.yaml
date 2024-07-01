@@ -41,7 +41,7 @@ spec:
               {{- toYaml $root.Values.volumeMounts | nindent 14 }}
             {{- end }}
             resources:
-{{ toYaml ( .resources | default $root.Values.cronjobs.resources ) | indent 16 }}
+              {{ toYaml ( .resources | default $root.Values.cronjobs.resources ) | indent 16 }}
             command:
               - sh
               - -c
@@ -51,7 +51,15 @@ spec:
             {{- toYaml $root.Values.volumes | nindent 12 }}
           {{- end }}
           nodeSelector:
-            {{- toYaml $root.Values.nodeSelector | nindent 12 }}
+            {{- toYaml (.nodeSelector | default $root.Values.cronjobs.nodeSelector | default $root.Values.nodeSelector) | nindent 12 }}
+          {{- with .affinity | default $root.Values.affinity }}
+          affinity:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .tolerations | default $root.Values.cronjobs.tolerations | default $root.Values.tolerations }}
+          tolerations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           restartPolicy: "{{ .restartPolicy | default $root.Values.cronjobs.restartPolicy }}"
 {{- end }}
 {{- end }}
