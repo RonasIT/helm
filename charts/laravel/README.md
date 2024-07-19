@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.3.2](https://img.shields.io/badge/Version-2.3.2-informational?style=flat-square)
+![Version: 2.5.0](https://img.shields.io/badge/Version-2.5.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -85,7 +85,6 @@ $ helm install laravel ronas/laravel
 | mysql.primary.resources.requests.cpu | string | `"100m"` |  |
 | mysql.primary.resources.requests.memory | string | `"192Mi"` |  |
 | nameOverride | string | `""` |  |
-| nodeSelector.default-node-pool | string | `"true"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | postgresql.auth.database | string | `"pgdb"` |  |
