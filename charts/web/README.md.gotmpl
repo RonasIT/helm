@@ -1,0 +1,16 @@
+# {{ template "chart.name" . }}
+
+{{ template "chart.versionBadge" . }}
+
+## Installing the Chart
+
+To install the chart with the release name {{ template "chart.name" . }}:
+
+```console
+$ helm repo add ronas https://ronasit.github.io/helm/
+$ helm install {{ template "chart.name" . }} ronas/{{ template "chart.name" . }}
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}

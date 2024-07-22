@@ -1,5 +1,5 @@
 apiVersion: v2
-name: web
+name: web-no-nodeselector
 description: A Helm chart for Kubernetes to deploy a react, react native, angular, nextjs or vuejs application
 
 # A chart can be either an 'application' or a 'library' chart.
