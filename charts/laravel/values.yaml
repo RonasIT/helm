@@ -11,9 +11,6 @@ imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''
 
-nodeSelector:
-  default-node-pool: 'true'
-
 extraEnvVars: []
 
 serviceAccount:
@@ -129,8 +126,6 @@ postgresql:
         memory: 128Mi
       limits:
         memory: 128Mi
-    nodeSelector:
-      default-node-pool: 'true'
 
 mysql:
   enabled: false
@@ -147,8 +142,6 @@ mysql:
         memory: 192Mi
       limits:
         memory: 192Mi
-    nodeSelector:
-      default-node-pool: 'true'
 
 redis:
   enabled: true
@@ -165,8 +158,6 @@ redis:
         memory: 64Mi
       limits:
         memory: 64Mi
-    nodeSelector:
-      default-node-pool: 'true'
 
 soketi:
   enabled: false
@@ -194,8 +185,6 @@ soketi:
         valueFrom:
           fieldRef:
             fieldPath: metadata.namespace
-  nodeSelector:
-    default-node-pool: 'true'
 
 cronjobs:
   enabled: true
