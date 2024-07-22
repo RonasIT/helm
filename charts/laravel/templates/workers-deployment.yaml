@@ -39,7 +39,7 @@ spec:
           {{- toYaml $root.Values.volumeMounts | nindent 10 }}
         {{- end }}
         resources:
-{{ toYaml ( .resources | default $root.Values.workers.resources ) | indent 10 }}
+          {{ toYaml ( .resources | default $root.Values.workers.resources ) | indent 10 }}
         command: 
           - sh
           - -c
@@ -50,5 +50,13 @@ spec:
       {{- end }}
       nodeSelector:
         {{- toYaml (.nodeSelector | default $root.Values.workers.nodeSelector | default $root.Values.nodeSelector) | nindent 8 }}
+      {{- with .affinity | default $root.Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .tolerations | default $root.Values.workers.tolerations | default $root.Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
 {{- end }}
 {{- end }}
