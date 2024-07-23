@@ -116,6 +116,8 @@ affinity: {}
 
 postgresql:
   enabled: true
+  image:
+    tag: 16
   auth:
     database: 'pgdb'
     username: 'pguser'

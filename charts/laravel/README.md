@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.3.2](https://img.shields.io/badge/Version-2.3.2-informational?style=flat-square)
+![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -92,6 +92,7 @@ $ helm install laravel ronas/laravel
 | postgresql.auth.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.auth.username | string | `"pguser"` |  |
 | postgresql.enabled | bool | `true` |  |
+| postgresql.image.tag | int | `16` |  |
 | postgresql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | postgresql.primary.persistence.size | string | `"1Gi"` |  |
 | postgresql.primary.resources.limits.memory | string | `"128Mi"` |  |
