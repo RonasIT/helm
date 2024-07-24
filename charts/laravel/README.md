@@ -1,14 +1,14 @@
-# laravel
+# laravel-no-nodeselector
 
 ![Version: 2.3.2](https://img.shields.io/badge/Version-2.3.2-informational?style=flat-square)
 
 ## Installing the Chart
 
-To install the chart with the release name laravel:
+To install the chart with the release name laravel-no-nodeselector:
 
 ```console
 $ helm repo add ronas https://ronasit.github.io/helm/
-$ helm install laravel ronas/laravel
+$ helm install laravel-no-nodeselector ronas/laravel-no-nodeselector
 ```
 
 ## Requirements
@@ -79,20 +79,17 @@ $ helm install laravel ronas/laravel
 | mysql.auth.existingSecret | string | `"mysql-credentials"` |  |
 | mysql.auth.username | string | `"myuser"` |  |
 | mysql.enabled | bool | `false` |  |
-| mysql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | mysql.primary.persistence.size | string | `"1Gi"` |  |
 | mysql.primary.resources.limits.memory | string | `"192Mi"` |  |
 | mysql.primary.resources.requests.cpu | string | `"100m"` |  |
 | mysql.primary.resources.requests.memory | string | `"192Mi"` |  |
 | nameOverride | string | `""` |  |
-| nodeSelector.default-node-pool | string | `"true"` |  |
 | podAnnotations | object | `{}` |  |
 | podSecurityContext | object | `{}` |  |
 | postgresql.auth.database | string | `"pgdb"` |  |
 | postgresql.auth.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.auth.username | string | `"pguser"` |  |
 | postgresql.enabled | bool | `true` |  |
-| postgresql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | postgresql.primary.persistence.size | string | `"1Gi"` |  |
 | postgresql.primary.resources.limits.memory | string | `"128Mi"` |  |
 | postgresql.primary.resources.requests.cpu | string | `"100m"` |  |
@@ -104,7 +101,6 @@ $ helm install laravel ronas/laravel
 | redis.auth.existingSecret | string | `"redis-credentials"` |  |
 | redis.auth.existingSecretPasswordKey | string | `"password"` |  |
 | redis.enabled | bool | `true` |  |
-| redis.master.nodeSelector.default-node-pool | string | `"true"` |  |
 | redis.master.persistence.size | string | `"1Gi"` |  |
 | redis.master.resources.limits.memory | string | `"64Mi"` |  |
 | redis.master.resources.requests.cpu | string | `"50m"` |  |
@@ -132,7 +128,6 @@ $ helm install laravel ronas/laravel
 | soketi.app.resources.requests.cpu | string | `"100m"` |  |
 | soketi.app.resources.requests.memory | string | `"128Mi"` |  |
 | soketi.enabled | bool | `false` |  |
-| soketi.nodeSelector.default-node-pool | string | `"true"` |  |
 | soketi.service.port | int | `6001` |  |
 | tolerations | list | `[]` |  |
 | volumeMounts[0].mountPath | string | `"/mnt/gcs"` |  |
