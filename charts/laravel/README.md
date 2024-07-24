@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.3.2](https://img.shields.io/badge/Version-2.3.2-informational?style=flat-square)
+![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -15,9 +15,9 @@ $ helm install laravel ronas/laravel
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mysql | ^9.14.1 |
-| https://charts.bitnami.com/bitnami | postgresql | ^13.2.1 |
-| https://charts.bitnami.com/bitnami | redis | ^18.2.0 |
+| https://charts.bitnami.com/bitnami | mysql | ^11.1.12 |
+| https://charts.bitnami.com/bitnami | postgresql | ^15.5.18 |
+| https://charts.bitnami.com/bitnami | redis | ^19.6.2 |
 | https://helm.soketi.app | soketi | ^2.0.0 |
 
 ## Values
@@ -92,6 +92,7 @@ $ helm install laravel ronas/laravel
 | postgresql.auth.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.auth.username | string | `"pguser"` |  |
 | postgresql.enabled | bool | `true` |  |
+| postgresql.image.tag | int | `16` |  |
 | postgresql.primary.nodeSelector.default-node-pool | string | `"true"` |  |
 | postgresql.primary.persistence.size | string | `"1Gi"` |  |
 | postgresql.primary.resources.limits.memory | string | `"128Mi"` |  |
