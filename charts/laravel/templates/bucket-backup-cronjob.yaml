@@ -1,0 +1,53 @@
+{{- if .Values.bucketBackups.enabled -}}
+{{- $root := . -}}
+{{- range .Values.bucketBackups.schedulers }}
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ regexReplaceAll "_" $root.Values.bucketBackups.name "-" }}-cronjob
+  namespace: {{ .Release.Namespace }}
+  labels:
+        {{- include "laravel.labels" $root | nindent 4 }}
+spec:
+  schedule: "{{ $root.Values.bucketBackups.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: {{ .container.name }}
+              image: {{ .container.image }}
+              volumeMounts:
+                - name: datadir
+                  mountPath: {{ .pvBackupPath }}
+                - name: gcs-key
+                  mountPath: /secret/gcs-key
+                  readOnly: true
+              env:
+                - name: GOOGLE_APPLICATION_CREDENTIALS
+                  value: /secret/gcs-key/key.json
+              command: ["/bin/sh", "-c"]
+              args:
+                - |
+                  gcloud auth activate-service-account --key-file=/secret/gcs-key/key.json
+                  gsutil -m rsync -r {{ .pvBackupPath }} gs://{{ $root.Values.bucketBackups.gcs.bucket }}/{{ .Release.Namespace }}
+                  cd {{ .pvBackupPath }}
+                  files_to_delete=$(ls -1tr pg_dumpall-*.pgdump | head -n -7)
+                  if [ -n "$files_to_delete" ]; then
+                    echo "$files_to_delete" | xargs -d '\n' rm --
+                  else
+                    echo "No files to delete"
+                  fi
+              resources:
+{{ toYaml ( .resources | default $root.Values.bucketBackups.resources ) | indent 16 }}
+          restartPolicy: "{{ $root.Values.bucketBackups.cronjobs.restartPolicy }}"
+          volumes:
+            - name: datadir
+              persistentVolumeClaim:
+                claimName: {{ .persistentVolumeClaim.datadir }}
+            - name: gcs-key
+              secret:
+                secretName: {{ .secretVolume.secretName }}
+{{- end }}
+{{- end }}

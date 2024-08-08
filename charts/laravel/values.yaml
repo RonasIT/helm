@@ -8,12 +8,12 @@ image:
   repository: nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: ''
 
 imagePullSecrets: []
 
-nameOverride: ""
-fullnameOverride: ""
+nameOverride: ''
+fullnameOverride: ''
 
 extraEnvVars: []
 # extraEnvVars:
@@ -27,7 +27,7 @@ serviceAccount:
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: ''
 
 podAnnotations: {}
 
@@ -54,10 +54,10 @@ volumes:
 
 volumeMounts:
   - name: gcs
-    mountPath: "/mnt/gcs"
+    mountPath: '/mnt/gcs'
     readOnly: true
   - name: logs
-    mountPath: "/app/storage/logs"
+    mountPath: '/app/storage/logs'
 
 securityContext: {}
 # capabilities:
@@ -83,7 +83,7 @@ logger:
 
 ingress:
   enabled: true
-  className: ""
+  className: ''
   annotations:
     kubernetes.io/ingress.class: nginx
     ingress.kubernetes.io/rewrite-target: /
@@ -127,9 +127,9 @@ postgresql:
     internal: true
   auth:
     enablePostgresUser: false
-    database: "pgdb"
-    username: "pguser"
-    existingSecret: "postgresql-credentials"
+    database: 'pgdb'
+    username: 'pguser'
+    existingSecret: 'postgresql-credentials'
   primary:
     persistence:
       size: 1Gi
@@ -147,9 +147,9 @@ mysql:
     enabled: false
     internal: true
   auth:
-    database: "mydb"
-    username: "myuser"
-    existingSecret: "mysql-credentials"
+    database: 'mydb'
+    username: 'myuser'
+    existingSecret: 'mysql-credentials'
   primary:
     persistence:
       size: 1Gi
@@ -167,9 +167,9 @@ redis:
     enabled: false
     internal: true
   auth:
-    existingSecret: "redis-credentials"
-    existingSecretPasswordKey: "password"
-  architecture: "standalone"
+    existingSecret: 'redis-credentials'
+    existingSecretPasswordKey: 'password'
+  architecture: 'standalone'
   master:
     persistence:
       size: 1Gi
@@ -195,7 +195,7 @@ soketi:
         memory: 256Mi
     extraEnv:
       - name: SOKETI_DEBUG
-        value: "1"
+        value: '1'
       - name: SOKETI_DEFAULT_APP_ID
         valueFrom:
           fieldRef:
@@ -213,12 +213,12 @@ cronjobs:
   enabled: false
   schedulers:
     - name: default
-      cmd: "php artisan schedule:run || true"
-  schedule: "*/1 * * * *"
-  concurrencyPolicy: "Forbid"
+      cmd: 'php artisan schedule:run || true'
+  schedule: '*/1 * * * *'
+  concurrencyPolicy: 'Forbid'
   startingDeadlineSeconds: 200
   successfulJobsHistoryLimit: 1
-  restartPolicy: "Never"
+  restartPolicy: 'Never'
   resources:
     requests:
       cpu: 35m
@@ -227,14 +227,42 @@ cronjobs:
       cpu: 45m
       memory: 100Mi
 
+bucketBackups:
+  enabled: false
+  name: 'copy-to-bucket'
+  schedule: '0 2 * * *'
+  gcs:
+    bucket: 'gcs-bucket'
+  cronjobs:
+    restartPolicy: 'OnFailure'
+  schedulers:
+    - name: 'copy-to-bucket'
+      container:
+        name: 'copy-to-bucket'
+        image: 'google/cloud-sdk:486.0.0'
+        command: '/bin/sh'
+      persistentVolumeClaim:
+        datadir: 'postgresql-pgdumpall'
+      secretVolume:
+        secretName: 'gcs-key'
+      pvBackupPath: '/backup/pgdump'
+      backupBucket: 'bucket-name'
+  resources:
+    requests:
+      cpu: 200m
+      memory: 180Mi
+    limits:
+      cpu: 200m
+      memory: 180Mi
+
 migration:
   enabled: true
   annotations:
-    "helm.sh/hook": post-install,pre-upgrade
-    "helm.sh/hook-delete-policy": before-hook-creation
+    'helm.sh/hook': post-install,pre-upgrade
+    'helm.sh/hook-delete-policy': before-hook-creation
   activeDeadlineSeconds: 180
   backoffLimit: 1
-  cmd: "/mnt/scripts/migration.sh"
+  cmd: '/mnt/scripts/migration.sh'
   resources:
     requests:
       cpu: 35m
