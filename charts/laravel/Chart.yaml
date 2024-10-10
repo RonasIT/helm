@@ -3,7 +3,7 @@ appVersion: 1.16.0
 description: A Helm chart for Kubernetes to deploy Laravel applications
 name: laravel
 type: application
-version: 2.4.0
+version: 2.5.0
 dependencies:
   - name: postgresql
     condition: postgresql.enabled
@@ -12,7 +12,7 @@ dependencies:
   - name: mysql
     condition: mysql.enabled
     repository: https://charts.bitnami.com/bitnami
-    version: ^11.1.12
+    version: ^11.1.17
   - name: redis
     condition: redis.enabled
     repository: https://charts.bitnami.com/bitnami

@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.4.0](https://img.shields.io/badge/Version-2.4.0-informational?style=flat-square)
+![Version: 2.5.0](https://img.shields.io/badge/Version-2.5.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -15,7 +15,7 @@ $ helm install laravel ronas/laravel
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://charts.bitnami.com/bitnami | mysql | ^11.1.12 |
+| https://charts.bitnami.com/bitnami | mysql | ^11.1.17 |
 | https://charts.bitnami.com/bitnami | postgresql | ^15.5.18 |
 | https://charts.bitnami.com/bitnami | redis | ^19.6.2 |
 | https://helm.soketi.app | soketi | ^2.0.0 |
