@@ -11,7 +11,7 @@
    )
   "small" (dict
       "requests" (dict "cpu" "200m" "memory" "512Mi" "ephemeral-storage" "50Mi")
-      "limits" (dict "memory" "384Mi" "ephemeral-storage" "2Gi")
+      "limits" (dict "memory" "512Mi" "ephemeral-storage" "2Gi")
    )
   "medium" (dict
       "requests" (dict "cpu" "400m" "memory" "1024Mi" "ephemeral-storage" "50Mi")
@@ -27,7 +27,7 @@
    )
   "2xlarge" (dict
       "requests" (dict "cpu" "4.0" "memory" "8192Mi" "ephemeral-storage" "50Mi")
-      "limits" (dict "cpu" "4.0" "memory" "8192Mi" "ephemeral-storage" "2Gi")
+      "limits" (dict "memory" "8192Mi" "ephemeral-storage" "2Gi")
    )
 }}
 {{- if hasKey $presets .type -}}
