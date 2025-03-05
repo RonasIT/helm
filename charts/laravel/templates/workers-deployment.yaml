@@ -38,9 +38,16 @@ spec:
         volumeMounts:
           {{- toYaml $root.Values.volumeMounts | nindent 10 }}
         {{- end }}
-        resources:
-{{ toYaml ( .resources | default $root.Values.workers.resources ) | indent 10 }}
-        command: 
+        {{- if .resources }}
+        resources: {{- toYaml .resources | nindent 10 }}
+        {{- else if and .resourcesPreset (ne .resourcesPreset "none") }}
+        resources: {{- include "common.resources.preset" (dict "type" .resourcesPreset) | nindent 10 }}
+        {{- else if $root.Values.workers.resources }}
+        resources: {{- toYaml $root.Values.workers.resources | nindent 10 }}
+        {{- else if and $root.Values.workers.resourcesPreset (ne $root.Values.workers.resourcesPreset "none") }}
+        resources: {{- include "common.resources.preset" (dict "type" $root.Values.workers.resourcesPreset) | nindent 10 }}
+        {{- end }}
+        command:
           - sh
           - -c
           - {{ .cmd }}

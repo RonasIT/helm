@@ -3,7 +3,7 @@ replicaCount: 1
 image:
   repository: nginx
   pullPolicy: IfNotPresent
-  # -- Oiverrides the image tag whose default is the chart appVersion.
+  # -- Overrides the image tag whose default is the chart appVersion.
   tag: ''
 
 imagePullSecrets: []
@@ -67,15 +67,6 @@ service:
   port: 80
   annotations: {}
 
-logger:
-  enabled: true
-  resources:
-    requests:
-      cpu: 50m
-      memory: 64Mi
-    limits:
-      memory: 64Mi
-
 ingress:
   enabled: true
   className: ''
@@ -96,12 +87,11 @@ ingress:
       hosts:
         - api.ronas.cloud
 
-resources:
-  requests:
-    cpu: 100m
-    memory: 192Mi
-  limits:
-    memory: 192Mi
+resourcesPreset: nano
+
+logger:
+  enabled: true
+  resourcesPreset: nano
 
 autoscaling:
   enabled: false
@@ -125,12 +115,7 @@ postgresql:
   primary:
     persistence:
       size: 1Gi
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        memory: 128Mi
+    resourcesPreset: nano
     nodeSelector:
       default-node-pool: 'true'
 
@@ -143,12 +128,7 @@ mysql:
   primary:
     persistence:
       size: 1Gi
-    resources:
-      requests:
-        cpu: 100m
-        memory: 192Mi
-      limits:
-        memory: 192Mi
+    resourcesPreset: nano
     nodeSelector:
       default-node-pool: 'true'
 
@@ -161,43 +141,9 @@ redis:
   master:
     persistence:
       size: 1Gi
-    resources:
-      requests:
-        cpu: 50m
-        memory: 64Mi
-      limits:
-        memory: 64Mi
+    resourcesPreset: nano
     nodeSelector:
       default-node-pool: 'true'
-
-soketi:
-  enabled: false
-  service:
-    port: 6001
-  app:
-    resources:
-      requests:
-        cpu: 100m
-        memory: 128Mi
-      limits:
-        memory: 128Mi
-    extraEnv:
-      - name: SOKETI_DEBUG
-        value: '1'
-      - name: SOKETI_DEFAULT_APP_ID
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
-      - name: SOKETI_DEFAULT_APP_KEY
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
-      - name: SOKETI_DEFAULT_APP_SECRET
-        valueFrom:
-          fieldRef:
-            fieldPath: metadata.namespace
-  nodeSelector:
-    default-node-pool: 'true'
 
 cronjobs:
   enabled: true
@@ -209,12 +155,7 @@ cronjobs:
   startingDeadlineSeconds: 200
   successfulJobsHistoryLimit: 1
   restartPolicy: 'Never'
-  resources:
-    requests:
-      cpu: 50m
-      memory: 128Mi
-    limits:
-      memory: 128Mi
+  resourcesPreset: nano
 
 migration:
   enabled: true
@@ -224,12 +165,7 @@ migration:
   activeDeadlineSeconds: 180
   backoffLimit: 1
   cmd: '/mnt/scripts/migration.sh'
-  resources:
-    requests:
-      cpu: 50m
-      memory: 128Mi
-    limits:
-      memory: 128Mi
+  resourcesPreset: nano
 
 workers:
   enabled: true
@@ -240,27 +176,14 @@ workers:
     maxReplicas: 3
     targetCPUUtilizationPercentage: 60
   # -- Global workers resources (can be overwritten in items)
-  resources:
-    requests:
-      cpu: 25m
-      memory: 128Mi
-    limits:
-      cpu: 50m
-      memory: 128Mi
-  items:
-    []
-    # - name: default
-    #   replicaCount: 1
-    #   cmd: 'php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=default --memory=128'
-    #   autoscaling:
-    #     enabled: false
-    #     minReplicas: 1
-    #     maxReplicas: 3
-    #     targetCPUUtilizationPercentage: 60
-    #   resources:
-    #     requests:
-    #       cpu: 25m
-    #       memory: 128Mi
-    #     limits:
-    #       cpu: 25m
-    #       memory: 128Mi
+  resourcesPreset: nano
+  items: []
+  # - name: default
+  #   replicaCount: 1
+  #   cmd: 'php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=default --memory=128'
+  #   autoscaling:
+  #     enabled: false
+  #     minReplicas: 1
+  #     maxReplicas: 3
+  #     targetCPUUtilizationPercentage: 60
+  #   resourcesPreset: nano
