@@ -1,0 +1,84 @@
+resourcesPreset: 2xlarge
+
+serviceAccount:
+  create: false
+
+ingress:
+  enabled: false
+
+logger:
+  enabled: false
+  # resourcesPreset: small
+  # resources:
+  #   requests:
+  #     cpu: 20m
+  #     memory: 64Mi
+  #   limits:
+  #     memory: 64Mi
+
+autoscaling:
+  enabled: false
+
+postgresql:
+  enabled: false
+  primary:
+    resourcesPreset: large
+
+mysql:
+  enabled: false
+  primary:
+    resourcesPreset: large
+
+redis:
+  enabled: false
+  master:
+    resourcesPreset: medium
+
+cronjobs:
+  enabled: false
+  resourcesPreset: large
+  schedulers:
+    - name: default
+      cmd: 'php artisan schedule:run || true'
+      schedule: '*/1 * * * *'
+    - name: mail
+      cmd: 'php artisan queue:work --queue=mail --tries=3'
+      schedule: '*/1 * * * *'
+      resourcesPreset: small
+    - name: backup
+      cmd: 'php artisan backup:run'
+      schedule: '0 0 * * *'
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          memory: 128Mi
+
+migration:
+  enabled: false
+  # resourcesPreset: small
+  # resources:
+  #   requests:
+  #     cpu: 20m
+  #     memory: 64Mi
+  #   limits:
+  #     memory: 64Mi
+
+workers:
+  enabled: false
+  items:
+    - name: default
+      replicaCount: 1
+      cmd: 'php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=default --memory=128'
+      # resourcesPreset: nano
+      # resources:
+      #   requests:
+      #     cpu: 25m
+      #     memory: 128Mi
+      #   limits:
+      #     memory: 128Mi
+    # - name: mail
+    #   replicaCount: 1
+    #   cmd: 'php /app/artisan queue:work --sleep=3 --tries=3 --backoff=3 --queue=mail --memory=128'
+    #   resourcesPreset: nano
