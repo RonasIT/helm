@@ -6,7 +6,8 @@
   "image": "mcr.microsoft.com/devcontainers/base:jammy",
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {
-    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {}
+    "ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+    "ghcr.io/dirsigler/devcontainer-features/helm-docs:1": {}
   },
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
