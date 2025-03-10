@@ -1,0 +1,13 @@
+resourcesPreset: large
+# resources:
+#   requests:
+#     cpu: 200
+#     memory: 512Mi
+#   limits:
+#     memory: 512Mi
+
+serviceAccount:
+  create: false
+
+ingress:
+  enabled: false

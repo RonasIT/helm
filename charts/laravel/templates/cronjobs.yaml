@@ -40,8 +40,15 @@ spec:
             volumeMounts:
               {{- toYaml $root.Values.volumeMounts | nindent 14 }}
             {{- end }}
-            resources:
-{{ toYaml ( .resources | default $root.Values.cronjobs.resources ) | indent 16 }}
+            {{- if .resources }}
+            resources: {{- toYaml .resources | nindent 14 }}
+            {{- else if and .resourcesPreset (ne .resourcesPreset "none") }}
+            resources: {{- include "common.resources.preset" (dict "type" .resourcesPreset) | nindent 14 }}
+            {{- else if $root.Values.cronjobs.resources }}
+            resources: {{- toYaml $root.Values.cronjobs.resources | nindent 14 }}
+            {{- else if and $root.Values.cronjobs.resourcesPreset (ne $root.Values.cronjobs.resourcesPreset "none") }}
+            resources: {{- include "common.resources.preset" (dict "type" $root.Values.cronjobs.resourcesPreset) | nindent 14 }}
+            {{- end }}
             command:
               - sh
               - -c

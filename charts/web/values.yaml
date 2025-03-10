@@ -74,12 +74,7 @@ ingress:
         - www.app.ronas.cloud
         - app.ronas.cloud
 
-resources:
-  requests:
-    cpu: 100m
-    memory: 128Mi
-  limits:
-    memory: 128Mi
+resourcesPreset: nano
 
 autoscaling:
   enabled: false

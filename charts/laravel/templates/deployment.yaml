@@ -33,8 +33,11 @@ spec:
         securityContext:
           {{- toYaml .Values.securityContext | nindent 10 }}
         image: "fluent/fluent-bit:latest"
-        resources:
-{{- toYaml .Values.logger.resources | nindent 12 }}
+        {{- if .Values.logger.resources }}
+        resources: {{- toYaml .Values.logger.resources | nindent 10 }}
+        {{- else if and .Values.logger.resourcesPreset (ne .Values.logger.resourcesPreset "none") }}
+        resources: {{- include "common.resources.preset" (dict "type" .Values.logger.resourcesPreset) | nindent 10 }}
+        {{- end }}
         volumeMounts:
         - name: logs
           mountPath: "/logs"
@@ -80,8 +83,11 @@ spec:
         volumeMounts:
           {{- toYaml .Values.volumeMounts | nindent 10 }}
         {{- end }}
-        resources:
-{{- toYaml .Values.resources | nindent 12 }}
+        {{- if .Values.resources }}
+        resources: {{- toYaml .Values.resources | nindent 10 }}
+        {{- else if and .Values.resourcesPreset (ne .Values.resourcesPreset "none") }}
+        resources: {{- include "common.resources.preset" (dict "type" .Values.resourcesPreset) | nindent 10 }}
+        {{- end }}
       {{- if or .Values.volumes .Values.logger.enabled }}
       volumes:
         {{- if .Values.volumes }}

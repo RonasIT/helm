@@ -4,12 +4,9 @@ dependencies:
   version: 15.5.38
 - name: mysql
   repository: https://charts.bitnami.com/bitnami
-  version: 11.1.17
+  version: 11.1.20
 - name: redis
   repository: https://charts.bitnami.com/bitnami
   version: 19.6.4
-- name: soketi
-  repository: https://helm.soketi.app
-  version: 2.0.0
-digest: sha256:eb745f892679f24ef481c5422ba53ea5e0a9f3d731a589a2b09f5e2d8557dff6
-generated: "2024-10-10T13:00:55.785641+06:00"
+digest: sha256:85eb2196a95e7adb36b578cf32de6fca994698a8629e6bb09d3ebff9da53de85
+generated: "2025-03-05T07:00:21.515703797Z"

@@ -29,8 +29,17 @@ spec:
         {{- end }}
           - name: scripts
             mountPath: "/mnt/scripts"
+        {{- if .Values.migration.resources }}
+        resources: {{- toYaml .Values.migration.resources | nindent 10 }}
+        {{- else if and .Values.migration.resourcesPreset (ne .Values.migration.resourcesPreset "none") }}
+        resources: {{- include "common.resources.preset" (dict "type" .Values.migration.resourcesPreset) | nindent 10 }}
+        {{- else if .Values.migration.resources.limits.memory }}
         resources:
-{{- toYaml .Values.migration.resources | nindent 12 }}
+          limits:
+            memory: {{ .Values.migration.resources.limits.memory }}
+          requests:
+            memory: {{ .Values.migration.resources.limits.memory }}
+        {{- end }}
         command:
           - sh
           - -c
