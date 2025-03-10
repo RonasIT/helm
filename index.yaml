@@ -170,6 +170,29 @@ entries:
   laravel:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-03-10T10:11:37.904356651Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^15.5.18
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^11.1.17
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ^19.6.2
+    description: A Helm chart for Kubernetes to deploy Laravel applications
+    digest: fccaa4326bc7e9fbaf1ab125fd2bd858512b2b719c40df51a1be9750053e7a31
+    name: laravel
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/laravel-2.6.0/laravel-2.6.0.tgz
+    version: 2.6.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-10-10T10:58:16.659789965Z"
     dependencies:
     - condition: postgresql.enabled
@@ -944,6 +967,17 @@ entries:
   web:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-03-10T10:11:38.032249189Z"
+    description: A Helm chart for Kubernetes to deploy a react, react native, angular,
+      nextjs or vuejs application
+    digest: d122b4151d5ab16b7238513b3330522f7e975ca0e00fd49615f1585b0ebd344b
+    name: web
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/web-0.3.0/web-0.3.0.tgz
+    version: 0.3.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2024-02-14T06:42:52.242673926Z"
     description: A Helm chart for Kubernetes to deploy a react, react native, angular,
       nextjs or vuejs application
@@ -987,4 +1021,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/web-no-nodeselector-0.2.1/web-no-nodeselector-0.2.1.tgz
     version: 0.2.1
-generated: "2024-10-10T10:58:16.660013243Z"
+generated: "2025-03-10T10:11:38.032585106Z"
