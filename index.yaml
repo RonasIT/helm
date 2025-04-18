@@ -170,6 +170,29 @@ entries:
   laravel:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-04-18T06:06:57.988624043Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^16.6.3
+    - condition: mysql.enabled
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: ^11.1.17
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: ^19.6.2
+    description: A Helm chart for Kubernetes to deploy Laravel applications
+    digest: 2216dea28a21d262ba3c1b07504269811b74f16af4d2e852d50a781760c45b5b
+    name: laravel
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/laravel-2.6.1/laravel-2.6.1.tgz
+    version: 2.6.1
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-03-10T10:11:37.904356651Z"
     dependencies:
     - condition: postgresql.enabled
@@ -1021,4 +1044,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/web-no-nodeselector-0.2.1/web-no-nodeselector-0.2.1.tgz
     version: 0.2.1
-generated: "2025-03-10T10:11:38.032585106Z"
+generated: "2025-04-18T06:06:57.988866092Z"
