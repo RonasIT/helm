@@ -16,7 +16,7 @@ $ helm install laravel ronas/laravel
 | Repository | Name | Version |
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mysql | ^11.1.17 |
-| https://charts.bitnami.com/bitnami | postgresql | ^15.5.18 |
+| https://charts.bitnami.com/bitnami | postgresql | ^16.6.3 |
 | https://charts.bitnami.com/bitnami | redis | ^19.6.2 |
 
 ## Values
