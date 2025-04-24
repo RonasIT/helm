@@ -107,7 +107,7 @@ affinity: {}
 postgresql:
   enabled: true
   image:
-    tag: 16
+    tag: 17.4
   auth:
     database: 'pgdb'
     username: 'pguser'
@@ -135,7 +135,7 @@ mysql:
 redis:
   enabled: true
   image:
-    tag: 7.4
+    tag: 7.1
   auth:
     existingSecret: 'redis-credentials'
     existingSecretPasswordKey: 'password'
