@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.6.0](https://img.shields.io/badge/Version-2.6.0-informational?style=flat-square)
+![Version: 2.6.1](https://img.shields.io/badge/Version-2.6.1-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -17,7 +17,7 @@ $ helm install laravel ronas/laravel
 |------------|------|---------|
 | https://charts.bitnami.com/bitnami | mysql | ^11.1.17 |
 | https://charts.bitnami.com/bitnami | postgresql | ^16.6.3 |
-| https://charts.bitnami.com/bitnami | redis | ^19.6.2 |
+| https://charts.bitnami.com/bitnami | redis | ^20.13.2 |
 
 ## Values
 
@@ -94,6 +94,7 @@ $ helm install laravel ronas/laravel
 | redis.auth.existingSecret | string | `"redis-credentials"` |  |
 | redis.auth.existingSecretPasswordKey | string | `"password"` |  |
 | redis.enabled | bool | `true` |  |
+| redis.image.tag | float | `7.4` |  |
 | redis.master.nodeSelector.default-node-pool | string | `"true"` |  |
 | redis.master.persistence.size | string | `"1Gi"` |  |
 | redis.master.resourcesPreset | string | `"nano"` |  |
