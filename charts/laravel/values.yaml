@@ -135,7 +135,7 @@ mysql:
 redis:
   enabled: true
   image:
-    tag: 7.1
+    tag: 7.4
   auth:
     existingSecret: 'redis-credentials'
     existingSecretPasswordKey: 'password'
