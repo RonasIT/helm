@@ -89,3 +89,27 @@ nodeSelector:
 tolerations: []
 
 affinity: {}
+
+livenessProbe:
+  enabled: true
+  path: /
+  port: http
+  initialDelaySeconds: 5
+  periodSeconds: 20
+  timeoutSeconds: 10
+
+readinessProbe:
+  enabled: true
+  path: /
+  port: http
+  initialDelaySeconds: 5
+  periodSeconds: 20
+  timeoutSeconds: 10
+
+startupProbe:
+  enabled: false
+  path: /
+  port: http
+  initialDelaySeconds: 5
+  periodSeconds: 20
+  timeoutSeconds: 10
