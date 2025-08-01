@@ -1036,6 +1036,17 @@ entries:
   web:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-08-01T12:06:51.580855984Z"
+    description: A Helm chart for Kubernetes to deploy a react, react native, angular,
+      nextjs or vuejs application
+    digest: 326fe8cb9ffdd02e50e8b86d1cb6f55b2c430800507a5b8ca7f743f80edf3a38
+    name: web
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/web-0.3.2/web-0.3.2.tgz
+    version: 0.3.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-08-01T09:14:10.555053341Z"
     description: A Helm chart for Kubernetes to deploy a react, react native, angular,
       nextjs or vuejs application
@@ -1101,4 +1112,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/web-no-nodeselector-0.2.1/web-no-nodeselector-0.2.1.tgz
     version: 0.2.1
-generated: "2025-08-01T09:14:10.555202118Z"
+generated: "2025-08-01T12:06:51.581001144Z"
