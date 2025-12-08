@@ -1,0 +1,58 @@
+{{- if and .Values.migration.enabled }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "laravel.fullname" . }}-migration
+  labels:
+    {{- include "laravel.labels" . | nindent 4 }}
+  annotations:
+    {{- toYaml .Values.migration.annotations | nindent 4 }}
+spec:
+  activeDeadlineSeconds: {{ .Values.migration.activeDeadlineSeconds }}
+  backoffLimit: {{ .Values.migration.backoffLimit }}
+  template:
+    spec:
+     {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "laravel.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+      - name: {{ include "laravel.fullname" . }}-db-migrate
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        volumeMounts:
+        {{- if .Values.volumeMounts }}
+          {{- toYaml .Values.volumeMounts | nindent 10 }}
+        {{- end }}
+          - name: scripts
+            mountPath: "/mnt/scripts"
+        {{- if .Values.migration.resources }}
+        resources: {{- toYaml .Values.migration.resources | nindent 10 }}
+        {{- else if and .Values.migration.resourcesPreset (ne .Values.migration.resourcesPreset "none") }}
+        resources: {{- include "common.resources.preset" (dict "type" .Values.migration.resourcesPreset) | nindent 10 }}
+        {{- else if .Values.migration.resources.limits.memory }}
+        resources:
+          limits:
+            memory: {{ .Values.migration.resources.limits.memory }}
+          requests:
+            memory: {{ .Values.migration.resources.limits.memory }}
+        {{- end }}
+        command:
+          - sh
+          - -c
+          - {{ .Values.migration.cmd }}
+      restartPolicy: Never
+      volumes:
+      {{- if .Values.volumes }}
+        {{- toYaml .Values.volumes | nindent 8 }}
+      {{- end }}
+        - name: scripts
+          configMap:
+            name: {{ include "laravel.fullname" . }}-scripts
+            defaultMode: 0777
+      nodeSelector:
+        {{- toYaml .Values.nodeSelector | nindent 8 }}
+{{- end }}

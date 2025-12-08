@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 2.7.1](https://img.shields.io/badge/Version-2.7.1-informational?style=flat-square)
+![Version: 2.8.0](https://img.shields.io/badge/Version-2.8.0-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -44,18 +44,15 @@ $ helm install laravel ronas/laravel
 | image.repository | string | `"nginx"` |  |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` |  |
-| ingress.annotations."cert-manager.io/cluster-issuer" | string | `"cert-manager"` |  |
-| ingress.annotations."certmanager.k8s.io/cluster-issuer" | string | `"cert-manager"` |  |
-| ingress.annotations."ingress.kubernetes.io/rewrite-target" | string | `"/"` |  |
-| ingress.annotations."kubernetes.io/ingress.class" | string | `"nginx"` |  |
-| ingress.annotations."nginx.ingress.kubernetes.io/server-snippet" | string | `"add_header X-Robots-Tag \"noindex, nofollow\";\n"` |  |
-| ingress.className | string | `""` |  |
 | ingress.enabled | bool | `true` |  |
-| ingress.hosts[0].host | string | `"api.ronas.cloud"` |  |
-| ingress.hosts[0].paths[0].path | string | `"/"` |  |
-| ingress.hosts[0].paths[0].pathType | string | `"ImplementationSpecific"` |  |
-| ingress.tls[0].hosts[0] | string | `"api.ronas.cloud"` |  |
-| ingress.tls[0].secretName | string | `"api.ronas.cloud-tls"` |  |
+| ingress.entryPoints[0] | string | `"websecure"` |  |
+| ingress.forwardedHeaders.host | string | `""` |  |
+| ingress.forwardedHeaders.port | string | `"443"` |  |
+| ingress.forwardedHeaders.proto | string | `"https"` |  |
+| ingress.hosts[0] | string | `"api.ronas.cloud"` |  |
+| ingress.noindex.enabled | bool | `false` |  |
+| ingress.noindex.value | string | `"noindex, nofollow"` |  |
+| ingress.tls.certResolver | string | `"letsencrypt"` |  |
 | livenessProbe.enabled | bool | `true` |  |
 | livenessProbe.path | string | `"/status"` |  |
 | livenessProbe.port | string | `"http"` |  |

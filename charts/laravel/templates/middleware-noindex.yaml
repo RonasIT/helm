@@ -1,0 +1,13 @@
+{{- if and .Values.ingress (hasKey .Values.ingress "noindex") .Values.ingress.noindex.enabled }}
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "laravel.fullname" . }}-noindex
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "laravel.labels" . | nindent 4 }}
+spec:
+  headers:
+    customResponseHeaders:
+      X-Robots-Tag: {{ .Values.ingress.noindex.value | quote }}
+{{- end }}
