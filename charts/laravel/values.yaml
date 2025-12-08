@@ -67,26 +67,6 @@ service:
   port: 80
   annotations: {}
 
-# ingress:
-#   enabled: true
-#   className: ''
-#   annotations:
-#     kubernetes.io/ingress.class: nginx
-#     ingress.kubernetes.io/rewrite-target: /
-#     cert-manager.io/cluster-issuer: cert-manager
-#     certmanager.k8s.io/cluster-issuer: cert-manager
-#     nginx.ingress.kubernetes.io/server-snippet: >
-#       add_header X-Robots-Tag "noindex, nofollow";
-#   hosts:
-#     - host: api.ronas.cloud
-#       paths:
-#         - path: /
-#           pathType: ImplementationSpecific
-#   tls:
-#     - secretName: api.ronas.cloud-tls
-#       hosts:
-#         - api.ronas.cloud
-
 resourcesPreset: nano
 
 logger:
@@ -205,3 +185,11 @@ ingress:
   noindex:
     enabled: false
     value: 'noindex, nofollow'
+  buffering:
+    enabled: false
+    maxRequestBodyBytes: 1048576000
+    maxResponseBodyBytes: 1048576000
+  ipAllowList:
+    enabled: false
+    sourceRange:
+      - '0.0.0.0/0'
