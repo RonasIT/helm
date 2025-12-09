@@ -183,13 +183,13 @@ ingress:
     port: '443'
     host: ''
   noindex:
-    enabled: false
+    enabled: true
     value: 'noindex, nofollow'
   buffering:
     enabled: true
     maxRequestBodyBytes: 1048576000
     maxResponseBodyBytes: 1048576000
   ipAllowList:
-    enabled: true
+    enabled: false
     sourceRange:
       - '0.0.0.0/0'
