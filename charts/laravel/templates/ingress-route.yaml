@@ -12,12 +12,9 @@ spec:
     - {{ . }}
     {{- end }}
   routes:
-    {{- range .Values.ingress.hosts }}
-    {{- $host := . }}
-    {{- if kindIs "map" . }}
-    {{- $host = .host }}
-    {{- end }}
-    - match: Host(`{{ $host }}`)
+    {{- range $hostConfig := .Values.ingress.hosts }}
+    {{- range $path := $hostConfig.paths }}
+    - match: Host(`{{ $hostConfig.host }}`){{ if ne $path.path "/" }} && PathPrefix(`{{ $path.path }}`){{ end }}
       kind: Rule
       middlewares:
         - name: {{ include "laravel.fullname" $ }}-forwarded-headers
@@ -31,8 +28,9 @@ spec:
         - name: {{ include "laravel.fullname" $ }}-noindex
         {{- end }}
       services:
-        - name: {{ include "laravel.fullname" $ }}
-          port: {{ $.Values.service.port }}
+        - name: {{ default (include "laravel.fullname" $) $path.service }}
+          port: {{ default $.Values.service.port $path.port }}
+    {{- end }}
     {{- end }}
   tls:
     certResolver: {{ .Values.ingress.tls.certResolver }}
