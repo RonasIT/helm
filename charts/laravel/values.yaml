@@ -186,10 +186,10 @@ ingress:
     enabled: false
     value: 'noindex, nofollow'
   buffering:
-    enabled: false
+    enabled: true
     maxRequestBodyBytes: 1048576000
     maxResponseBodyBytes: 1048576000
   ipAllowList:
-    enabled: false
+    enabled: true
     sourceRange:
       - '0.0.0.0/0'
