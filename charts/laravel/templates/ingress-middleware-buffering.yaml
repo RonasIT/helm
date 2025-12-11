@@ -12,6 +12,6 @@ spec:
     {{- if .Values.ingress.buffering.maxResponseBodyBytes }}
     maxResponseBodyBytes: {{ .Values.ingress.buffering.maxResponseBodyBytes }}
     {{- end }}
-    memRequestBodyBytes: 1048576  
+    memRequestBodyBytes: 1048576
     retryExpression: "IsNetworkError() && Attempts() <= 2"
 {{- end }}
