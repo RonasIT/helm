@@ -1,4 +1,4 @@
-{{- if .Values.ingress.ipAllowList.enabled }}
+{{- if and .Values.ingress.enabled (hasKey .Values.ingress "ipAllowList") .Values.ingress.ipAllowList.enabled }}
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
