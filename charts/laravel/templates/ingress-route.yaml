@@ -32,6 +32,8 @@ spec:
           port: {{ default $.Values.service.port $path.port }}
     {{- end }}
     {{- end }}
+  {{- if and .Values.ingress.tls .Values.ingress.tls.certResolver }}
   tls:
     certResolver: {{ .Values.ingress.tls.certResolver }}
+  {{- end }}
 {{- end }}
