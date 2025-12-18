@@ -18,13 +18,13 @@ spec:
       kind: Rule
       middlewares:
         - name: {{ include "laravel.fullname" $ }}-forwarded-headers
-        {{- if $.Values.ingress.ipAllowList.enabled }}
+        {{- if and (hasKey $.Values.ingress "ipAllowList") $.Values.ingress.ipAllowList.enabled }}
         - name: {{ include "laravel.fullname" $ }}-ip-allowlist
         {{- end }}
-        {{- if $.Values.ingress.buffering.enabled }}
+        {{- if and (hasKey $.Values.ingress "buffering") $.Values.ingress.buffering.enabled }}
         - name: {{ include "laravel.fullname" $ }}-buffering
         {{- end }}
-        {{- if $.Values.ingress.noindex.enabled }}
+        {{- if and (hasKey $.Values.ingress "noindex") $.Values.ingress.noindex.enabled }}
         - name: {{ include "laravel.fullname" $ }}-noindex
         {{- end }}
       services:
