@@ -177,7 +177,14 @@ ingress:
   hosts:
     - host: api.ronas.cloud
       paths:
+        # -- Path configuration. Each path can optionally specify a custom service and port.
+        # If service is not specified, it defaults to the main service (laravel.fullname).
+        # If port is not specified, it defaults to service.port.
         - path: /
+        # Example with custom service and port:
+        # - path: /api
+        #   service: custom-service-name
+        #   port: 8080
   tls:
     certResolver: letsencrypt
   forwardedHeaders:
