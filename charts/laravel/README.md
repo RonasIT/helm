@@ -44,13 +44,19 @@ $ helm install laravel ronas/laravel
 | image.repository | string | `"nginx"` |  |
 | image.tag | string | `""` | Overrides the image tag whose default is the chart appVersion. |
 | imagePullSecrets | list | `[]` |  |
+| ingress.buffering.enabled | bool | `true` |  |
+| ingress.buffering.maxRequestBodyBytes | int | `1048576000` |  |
+| ingress.buffering.maxResponseBodyBytes | int | `1048576000` |  |
 | ingress.enabled | bool | `true` |  |
 | ingress.entryPoints[0] | string | `"websecure"` |  |
 | ingress.forwardedHeaders.host | string | `""` |  |
 | ingress.forwardedHeaders.port | string | `"443"` |  |
 | ingress.forwardedHeaders.proto | string | `"https"` |  |
-| ingress.hosts[0] | string | `"api.ronas.cloud"` |  |
-| ingress.noindex.enabled | bool | `false` |  |
+| ingress.hosts[0].host | string | `"api.ronas.cloud"` |  |
+| ingress.hosts[0].paths[0] | object | `{"path":"/"}` | Path configuration. Each path can optionally specify a custom service and port. If service is not specified, it defaults to the main service (laravel.fullname). If port is not specified, it defaults to service.port. |
+| ingress.ipAllowList.enabled | bool | `false` |  |
+| ingress.ipAllowList.sourceRange | list | `[]` | List of allowed IP ranges in CIDR notation. Example: ['192.168.1.0/24'] WARNING: '0.0.0.0/0' allows all traffic and should be replaced with specific IP ranges for security. |
+| ingress.noindex.enabled | bool | `true` |  |
 | ingress.noindex.value | string | `"noindex, nofollow"` |  |
 | ingress.tls.certResolver | string | `"letsencrypt"` |  |
 | livenessProbe.enabled | bool | `true` |  |
