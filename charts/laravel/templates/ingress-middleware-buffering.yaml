@@ -1,4 +1,4 @@
-{{- if .Values.ingress.buffering.enabled }}
+{{- if and .Values.ingress.enabled (hasKey .Values.ingress "buffering") .Values.ingress.buffering.enabled }}
 apiVersion: traefik.io/v1alpha1
 kind: Middleware
 metadata:
