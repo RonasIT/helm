@@ -193,5 +193,6 @@ ingress:
     maxResponseBodyBytes: 1048576000
   ipAllowList:
     enabled: false
-    sourceRange:
-      - '0.0.0.0/0'
+    # -- List of allowed IP ranges in CIDR notation. Example: ['192.168.1.0/24']
+    # WARNING: '0.0.0.0/0' allows all traffic and should be replaced with specific IP ranges for security.
+    sourceRange: []
