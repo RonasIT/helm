@@ -1,0 +1,39 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "laravel.fullname" . }}-route
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "laravel.labels" . | nindent 4 }}
+spec:
+  entryPoints:
+    {{- range .Values.ingress.entryPoints }}
+    - {{ . }}
+    {{- end }}
+  routes:
+    {{- range $hostConfig := .Values.ingress.hosts }}
+    {{- range $path := $hostConfig.paths }}
+    - match: Host(`{{ $hostConfig.host }}`){{ if ne $path.path "/" }} && PathPrefix(`{{ $path.path }}`){{ end }}
+      kind: Rule
+      middlewares:
+        - name: {{ include "laravel.fullname" $ }}-forwarded-headers
+        {{- if and (hasKey $.Values.ingress "ipAllowList") $.Values.ingress.ipAllowList.enabled }}
+        - name: {{ include "laravel.fullname" $ }}-ip-allowlist
+        {{- end }}
+        {{- if and (hasKey $.Values.ingress "buffering") $.Values.ingress.buffering.enabled }}
+        - name: {{ include "laravel.fullname" $ }}-buffering
+        {{- end }}
+        {{- if and (hasKey $.Values.ingress "noindex") $.Values.ingress.noindex.enabled }}
+        - name: {{ include "laravel.fullname" $ }}-noindex
+        {{- end }}
+      services:
+        - name: {{ default (include "laravel.fullname" $) $path.service }}
+          port: {{ default $.Values.service.port $path.port }}
+    {{- end }}
+    {{- end }}
+  {{- if and .Values.ingress.tls .Values.ingress.tls.certResolver }}
+  tls:
+    certResolver: {{ .Values.ingress.tls.certResolver }}
+  {{- end }}
+{{- end }}

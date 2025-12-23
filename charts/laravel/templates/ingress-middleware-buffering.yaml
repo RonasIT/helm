@@ -1,0 +1,17 @@
+{{- if and .Values.ingress.enabled (hasKey .Values.ingress "buffering") .Values.ingress.buffering.enabled }}
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "laravel.fullname" . }}-buffering
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "laravel.labels" . | nindent 4 }}
+spec:
+  buffering:
+    maxRequestBodyBytes: {{ .Values.ingress.buffering.maxRequestBodyBytes }}
+    {{- if .Values.ingress.buffering.maxResponseBodyBytes }}
+    maxResponseBodyBytes: {{ .Values.ingress.buffering.maxResponseBodyBytes }}
+    {{- end }}
+    memRequestBodyBytes: 1048576
+    retryExpression: "IsNetworkError() && Attempts() <= 2"
+{{- end }}

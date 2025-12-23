@@ -1,0 +1,19 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: {{ include "laravel.fullname" . }}-forwarded-headers
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "laravel.labels" . | nindent 4 }}
+spec:
+  headers:
+    customRequestHeaders:
+      X-Forwarded-Proto: {{ dig "forwardedHeaders" "proto" "https" .Values.ingress | quote }}
+      X-Forwarded-Port: {{ dig "forwardedHeaders" "port" "443" .Values.ingress | quote }}
+      {{- if hasKey .Values.ingress "forwardedHeaders" }}
+      {{- if .Values.ingress.forwardedHeaders.host }}
+      X-Forwarded-Host: {{ .Values.ingress.forwardedHeaders.host | quote }}
+      {{- end }}
+      {{- end }}
+{{- end }}

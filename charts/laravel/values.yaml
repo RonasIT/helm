@@ -67,26 +67,6 @@ service:
   port: 80
   annotations: {}
 
-ingress:
-  enabled: true
-  className: ''
-  annotations:
-    kubernetes.io/ingress.class: nginx
-    ingress.kubernetes.io/rewrite-target: /
-    cert-manager.io/cluster-issuer: cert-manager
-    certmanager.k8s.io/cluster-issuer: cert-manager
-    nginx.ingress.kubernetes.io/server-snippet: >
-      add_header X-Robots-Tag "noindex, nofollow";
-  hosts:
-    - host: api.ronas.cloud
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-    - secretName: api.ronas.cloud-tls
-      hosts:
-        - api.ronas.cloud
-
 resourcesPreset: nano
 
 logger:
@@ -189,3 +169,37 @@ workers:
   #     maxReplicas: 3
   #     targetCPUUtilizationPercentage: 60
   #   resourcesPreset: nano
+
+ingress:
+  enabled: true
+  entryPoints:
+    - websecure
+  hosts:
+    - host: api.ronas.cloud
+      paths:
+        # -- Path configuration. Each path can optionally specify a custom service and port.
+        # If service is not specified, it defaults to the main service (laravel.fullname).
+        # If port is not specified, it defaults to service.port.
+        - path: /
+        # Example with custom service and port:
+        # - path: /api
+        #   service: custom-service-name
+        #   port: 8080
+  tls:
+    certResolver: letsencrypt
+  forwardedHeaders:
+    proto: 'https'
+    port: '443'
+    host: ''
+  noindex:
+    enabled: true
+    value: 'noindex, nofollow'
+  buffering:
+    enabled: true
+    maxRequestBodyBytes: 1048576000
+    maxResponseBodyBytes: 1048576000
+  ipAllowList:
+    enabled: false
+    # -- List of allowed IP ranges in CIDR notation. Example: ['192.168.1.0/24']
+    # WARNING: '0.0.0.0/0' allows all traffic and should be replaced with specific IP ranges for security.
+    sourceRange: []
