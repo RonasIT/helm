@@ -3,17 +3,19 @@ appVersion: 1.16.0
 description: A Helm chart for Kubernetes to deploy Laravel applications
 name: laravel
 type: application
-version: 2.8.0
+version: 3.0.0
 dependencies:
-  - name: postgresql
+  # alias `postgresql`: values live under `postgresql.*`, service is <release>-postgresql
+  - name: postgres
+    alias: postgresql
     condition: postgresql.enabled
-    repository: https://charts.bitnami.com/bitnami
-    version: ^16.6.3
-  - name: mysql
-    condition: mysql.enabled
-    repository: https://charts.bitnami.com/bitnami
-    version: ^11.1.17
+    repository: oci://registry-1.docker.io/cloudpirates
+    version: 0.19.5
+  - name: mariadb
+    condition: mariadb.enabled
+    repository: oci://registry-1.docker.io/cloudpirates
+    version: 0.16.5
   - name: redis
     condition: redis.enabled
-    repository: https://charts.bitnami.com/bitnami
-    version: ^20.13.2
+    repository: oci://registry-1.docker.io/cloudpirates
+    version: 0.30.4

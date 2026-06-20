@@ -13,4 +13,8 @@ $ helm install {{ template "chart.name" . }} ronas/{{ template "chart.name" . }}
 
 {{ template "chart.requirementsSection" . }}
 
+> **Upgrading from 2.x?** The PostgreSQL/Redis/MySQL subcharts moved from Bitnami to
+> CloudPirates (breaking). See [MIGRATION.md](./MIGRATION.md) for value remapping, service
+> name changes, and the PostgreSQL 17 → 18 data migration.
+
 {{ template "chart.valuesSection" . }}

@@ -84,48 +84,71 @@ tolerations: []
 
 affinity: {}
 
+# auth.* = the PostgreSQL superuser; customUser.* = the application user/db (Laravel).
 postgresql:
   enabled: true
   image:
-    tag: 17.4
+    imagePullPolicy: IfNotPresent
   auth:
-    database: 'pgdb'
-    username: 'pguser'
     existingSecret: 'postgresql-credentials'
-  primary:
-    persistence:
-      size: 1Gi
-    resourcesPreset: nano
-    nodeSelector:
-      default-node-pool: 'true'
+    secretKeys:
+      adminPasswordKey: 'postgres-password'
+  customUser:
+    name: 'pguser'
+    database: 'pgdb'
+    existingSecret: 'postgresql-credentials'
+    secretKeys:
+      name: ''
+      database: ''
+      password: 'password'
+  persistence:
+    size: 1Gi
+  nodeSelector:
+    default-node-pool: 'true'
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
 
-mysql:
+mariadb:
   enabled: false
   auth:
     database: 'mydb'
     username: 'myuser'
-    existingSecret: 'mysql-credentials'
-  primary:
-    persistence:
-      size: 1Gi
-    resourcesPreset: nano
-    nodeSelector:
-      default-node-pool: 'true'
+    existingSecret: 'mariadb-credentials'
+  image:
+    imagePullPolicy: IfNotPresent
+  persistence:
+    size: 1Gi
+  nodeSelector:
+    default-node-pool: 'true'
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
 
 redis:
   enabled: true
-  image:
-    tag: 7.4
+  architecture: 'standalone'
   auth:
     existingSecret: 'redis-credentials'
     existingSecretPasswordKey: 'password'
-  architecture: 'standalone'
-  master:
-    persistence:
-      size: 1Gi
-    resourcesPreset: nano
-    nodeSelector:
-      default-node-pool: 'true'
+  image:
+    pullPolicy: IfNotPresent
+  persistence:
+    size: 1Gi
+  nodeSelector:
+    default-node-pool: 'true'
+  resources:
+    requests:
+      cpu: 50m
+      memory: 128Mi
+    limits:
+      memory: 128Mi
 
 cronjobs:
   enabled: true
