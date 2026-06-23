@@ -170,6 +170,30 @@ entries:
   laravel:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-06-23T05:53:29.366557772Z"
+    dependencies:
+    - alias: postgresql
+      condition: postgresql.enabled
+      name: postgres
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.19.5
+    - condition: mariadb.enabled
+      name: mariadb
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.16.5
+    - condition: redis.enabled
+      name: redis
+      repository: oci://registry-1.docker.io/cloudpirates
+      version: 0.30.4
+    description: A Helm chart for Kubernetes to deploy Laravel applications
+    digest: 7d06170b11f976fdf6cabac91d8c60836c2d8080dfdd5233d17f1f65fb664cc1
+    name: laravel
+    type: application
+    urls:
+    - https://github.com/RonasIT/helm/releases/download/laravel-3.0.0/laravel-3.0.0.tgz
+    version: 3.0.0
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-12-23T06:27:27.283519607Z"
     dependencies:
     - condition: postgresql.enabled
@@ -1135,4 +1159,4 @@ entries:
     urls:
     - https://github.com/RonasIT/helm/releases/download/web-no-nodeselector-0.2.1/web-no-nodeselector-0.2.1.tgz
     version: 0.2.1
-generated: "2025-12-23T06:27:27.283797639Z"
+generated: "2026-06-23T05:53:29.366841668Z"
