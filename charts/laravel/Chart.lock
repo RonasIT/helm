@@ -1,12 +1,12 @@
 dependencies:
-- name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-  version: 16.7.27
-- name: mysql
-  repository: https://charts.bitnami.com/bitnami
-  version: 11.1.20
+- name: postgres
+  repository: oci://registry-1.docker.io/cloudpirates
+  version: 0.19.5
+- name: mariadb
+  repository: oci://registry-1.docker.io/cloudpirates
+  version: 0.16.5
 - name: redis
-  repository: https://charts.bitnami.com/bitnami
-  version: 20.13.4
-digest: sha256:859c5fc66d5dfc5f1a6f01ed5ffb5260e00fbabcd97fd7f3b500cbe2fe5da295
-generated: "2025-11-27T11:35:28.577455323Z"
+  repository: oci://registry-1.docker.io/cloudpirates
+  version: 0.30.4
+digest: sha256:9ddcfdcc6509fb8423faabab70bd06f734f4bfbf4ec4a4f57f95e8836bb8b9cf
+generated: "2026-06-20T19:45:38.174382+06:00"
