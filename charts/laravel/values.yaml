@@ -101,11 +101,15 @@ postgresql:
       name: ''
       database: ''
       password: 'password'
-  # The postgres subchart keeps 1024 MB of WAL for standbys by default, which fills the 1Gi disk
-  # without any replica. 96 MB (6 segments of 16 MB) leaves a small margin for one.
+  # The postgres subchart keeps 1024 MB of WAL for standbys by default, and PostgreSQL lets WAL grow
+  # to 1GB between checkpoints. Either one fills the 1Gi disk. Replication is off, so no WAL is kept
+  # for standbys, and max_wal_size caps the growth during write bursts.
   config:
     postgresql:
-      wal_keep_size: 96
+      wal_keep_size: 0
+    # A project that sets its own extraConfig replaces this list and has to repeat max_wal_size.
+    extraConfig:
+      - 'max_wal_size = 256MB'
   persistence:
     size: 1Gi
   nodeSelector:

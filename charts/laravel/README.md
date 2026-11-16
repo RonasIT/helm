@@ -91,7 +91,8 @@ $ helm install laravel ronas/laravel
 | podSecurityContext | object | `{}` |  |
 | postgresql.auth.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.auth.secretKeys.adminPasswordKey | string | `"postgres-password"` |  |
-| postgresql.config.postgresql.wal_keep_size | int | `96` |  |
+| postgresql.config.extraConfig[0] | string | `"max_wal_size = 256MB"` |  |
+| postgresql.config.postgresql.wal_keep_size | int | `0` |  |
 | postgresql.customUser.database | string | `"pgdb"` |  |
 | postgresql.customUser.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.customUser.name | string | `"pguser"` |  |
