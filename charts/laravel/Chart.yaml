@@ -3,7 +3,7 @@ appVersion: 1.16.0
 description: A Helm chart for Kubernetes to deploy Laravel applications
 name: laravel
 type: application
-version: 3.0.0
+version: 3.0.1
 dependencies:
   # alias `postgresql`: values live under `postgresql.*`, service is <release>-postgresql
   - name: postgres
