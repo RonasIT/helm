@@ -101,6 +101,11 @@ postgresql:
       name: ''
       database: ''
       password: 'password'
+  # The postgres subchart keeps 1024 MB of WAL for standbys by default, which fills the 1Gi disk
+  # without any replica. 96 MB (6 segments of 16 MB) leaves a small margin for one.
+  config:
+    postgresql:
+      wal_keep_size: 96
   persistence:
     size: 1Gi
   nodeSelector:

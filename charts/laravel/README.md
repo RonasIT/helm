@@ -1,6 +1,6 @@
 # laravel
 
-![Version: 3.0.0](https://img.shields.io/badge/Version-3.0.0-informational?style=flat-square)
+![Version: 3.0.1](https://img.shields.io/badge/Version-3.0.1-informational?style=flat-square)
 
 ## Installing the Chart
 
@@ -91,6 +91,7 @@ $ helm install laravel ronas/laravel
 | podSecurityContext | object | `{}` |  |
 | postgresql.auth.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.auth.secretKeys.adminPasswordKey | string | `"postgres-password"` |  |
+| postgresql.config.postgresql.wal_keep_size | int | `96` |  |
 | postgresql.customUser.database | string | `"pgdb"` |  |
 | postgresql.customUser.existingSecret | string | `"postgresql-credentials"` |  |
 | postgresql.customUser.name | string | `"pguser"` |  |
